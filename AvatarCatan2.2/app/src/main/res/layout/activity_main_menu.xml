@@ -7,10 +7,68 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="catan.avatar.matt.avatarcatan22.MainMenuActivity">
+    tools:context="catan.avatar.matt.avatarcatan22.MainMenuActivity"
+    android:background="#040000">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Units"
+            android:id="@+id/button2"
+            android:layout_gravity="right|center_vertical"
+            android:backgroundTint="#ff2b35"
+            android:textSize="60dp"
+            android:layout_weight="0.25"
+            android:clickable="false"
+            android:nestedScrollingEnabled="false" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rules"
+            android:id="@+id/button3"
+            android:layout_gravity="center_horizontal|bottom"
+            android:backgroundTint="#bb0009"
+            android:textSize="60dp"
+            android:layout_weight="0.25" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New Battle"
+            android:id="@+id/button"
+            android:layout_gravity="center_horizontal|top"
+            android:backgroundTint="#982929"
+            android:textSize="60dp"
+            android:layout_weight="0.25" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Load Battle"
+            android:id="@+id/button5"
+            android:layout_gravity="center_horizontal|top"
+            android:backgroundTint="#404150"
+            android:textSize="60dp"
+            android:layout_weight="0.25" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Timer"
+            android:id="@+id/button4"
+            android:layout_gravity="center_horizontal|top"
+            android:backgroundTint="#803179"
+            android:textSize="60dp"
+            android:layout_weight="0.25" />
+
+    </LinearLayout>
+
 </RelativeLayout>

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AvatarCatan2.2</string>
+    <string name="title_activity_rules">RulesActivity</string>
+    <string name="title_activity_units">UnitsActivity</string>
+    <string name="title_activity_offensive_team_choice">OffensiveTeamChoiceActivity</string>
+    <string name="title_activity_load_battle">LoadBattleActivity</string>
+    <string name="title_activity_timer">TimerActivity</string>
 </resources>
