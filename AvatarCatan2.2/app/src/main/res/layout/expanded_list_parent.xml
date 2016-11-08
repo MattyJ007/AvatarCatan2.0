@@ -3,16 +3,44 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="#767676"
     >
 
-    <TextView
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
-        android:text="New Text"
-        android:id="@+id/textView8"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:textColor="#ffffff"/>
+        android:layout_gravity="center_horizontal"
+        android:gravity="left|center">
+
+        <ImageView
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:id="@+id/imageView"
+            android:src="@drawable/avatar"
+            android:padding="5dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Kyoshi"
+            android:id="@+id/textView10"
+            android:textColor="#ffffff"
+            android:layout_weight="6"
+            android:gravity="left|center"
+            android:paddingLeft="10dp"
+            android:textSize="28dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="27 Gold"
+            android:id="@+id/textView8"
+            android:textStyle="bold"
+            android:textColor="#d5c003"
+            android:layout_weight="0.5"
+            android:paddingLeft="5dp" />
+    </LinearLayout>
 </LinearLayout>

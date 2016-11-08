@@ -1,9 +1,12 @@
 package catan.avatar.matt.avatarcatan22;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class UnitListDataProvider {
-    private static HashMap<String, Unit> unitHashMap;
+    private static HashMap<String, List<String>> unitHashMap;
+    private static ArrayList<Unit> unitsArray;
 
     private static String[] units = { "Fire Nation Guy,fng,8,Town (Earth),1,0,1,10,0,0,5,2,1",
             "A Water,awa,4,Village (Water),2,0,1,5,3,1,11,4,0",
@@ -62,13 +65,17 @@ public class UnitListDataProvider {
             "Face Stealer Koh,koh,14,Spirit Portal Open & Koh Assist Card,0,4,1,50,3,7,40,25,1",
             "Kyoshi,kyo,15,3 Settlements (Air + Fire + Water) & (Ba Sing Se or Omashu),3,4,3,35,9,7,35,27,1"
     };
-    static HashMap<String, Unit> getUnitList(){
+    static void setUnitHashMap(){
+        unitHashMap = new HashMap<>();
+        unitsArray = new ArrayList<>();
         String name,image,minRequirement;
         String[] unitStats;
+        String unitDisplayformat;
+        List<String> statsList;
         byte attack6,attack20,gold,hero,evasion,defense,life,intelligence,numberOfAttacks,type;
         Unit u;
-        byte count = 0;
         for (String unit1 :units) {
+            statsList = new ArrayList<>();
             unitStats = unit1.split(",");
             name = unitStats[0];
             image = unitStats[1];
@@ -84,9 +91,17 @@ public class UnitListDataProvider {
             gold = Byte.parseByte(unitStats[11]);
             hero = Byte.parseByte(unitStats[12]);
             u = new Unit(name, image, type, minRequirement, attack6,attack20,numberOfAttacks, defense,evasion,intelligence,life,gold,hero);
-            unitHashMap.put(name, u);
-            count ++;
+            unitDisplayformat = ("Attack D6: " + attack6 + "\nAttack D20: " + attack20 + "\nDefense: "+defense + "\nEvasion: "+evasion+"\nLife: "+life+"\nIntelligence: "+intelligence+"\nNumber of Attacks: "+numberOfAttacks+"\nBending: " + type + "\n\nMinimum Requirement: "+ minRequirement +"\n");
+            statsList.add(unitDisplayformat);
+            unitHashMap.put(name,statsList);
+            unitsArray.add(u);
         }
+    }
+    static HashMap<String, List<String >> getUnitHashMap(){
         return unitHashMap;
+    }
+
+    static ArrayList<Unit> getUnitsArray() {
+        return unitsArray;
     }
 }
