@@ -1,29 +1,26 @@
 package catan.avatar.matt.avatarcatan22;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.widget.ExpandableListView;
+
+import java.util.HashMap;
 
 public class UnitsActivity extends AppCompatActivity {
-
+    HashMap<String, Unit> unitlist;
+    ExpandableListView exp_list;
+    UnitExpandListAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_units);
+        exp_list = (ExpandableListView) findViewById(R.id.expandableListView);
+        unitlist = UnitListDataProvider.getUnitList();
+        adapter = new UnitExpandListAdapter(this, unitlist);
+        exp_list.setAdapter(adapter);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 

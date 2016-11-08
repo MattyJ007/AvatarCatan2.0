@@ -1,6 +1,9 @@
 package catan.avatar.matt.avatarcatan22;
+
+import java.util.HashMap;
+
 public class UnitListDataProvider {
-    private static Unit[] unitsList = new Unit[53];
+    private static HashMap<String, Unit> unitHashMap;
 
     private static String[] units = { "Fire Nation Guy,fng,8,Town (Earth),1,0,1,10,0,0,5,2,1",
             "A Water,awa,4,Village (Water),2,0,1,5,3,1,11,4,0",
@@ -59,30 +62,31 @@ public class UnitListDataProvider {
             "Face Stealer Koh,koh,14,Spirit Portal Open & Koh Assist Card,0,4,1,50,3,7,40,25,1",
             "Kyoshi,kyo,15,3 Settlements (Air + Fire + Water) & (Ba Sing Se or Omashu),3,4,3,35,9,7,35,27,1"
     };
-    static Unit[] setUnitList(){
-        String name,image;
+    static HashMap<String, Unit> getUnitList(){
+        String name,image,minRequirement;
         String[] unitStats;
-        byte attack6,attack20,evasion,defense,life,intelligence,numberOfAttacks,type;
-        boolean hero;
+        byte attack6,attack20,gold,hero,evasion,defense,life,intelligence,numberOfAttacks,type;
         Unit u;
         byte count = 0;
         for (String unit1 :units) {
             unitStats = unit1.split(",");
             name = unitStats[0];
             image = unitStats[1];
-            attack6 = Byte.parseByte(unitStats[3]);
-            attack20 = Byte.parseByte(unitStats[4]);
-            evasion = Byte.parseByte(unitStats[3]);
-            defense = Byte.parseByte(unitStats[4]);
-            life = Byte.parseByte(unitStats[3]);
-            intelligence = Byte.parseByte(unitStats[4]);
-            numberOfAttacks = Byte.parseByte(unitStats[3]);
-            type = Byte.parseByte(unitStats[4]);
-            hero = Boolean.parseBoolean(unitStats[5]);
-            u = new Unit(name, image, attack6,attack20,evasion,defense,life,intelligence, numberOfAttacks, type, hero);
-            unitsList[count]= u;
+            type = Byte.parseByte(unitStats[2]);
+            minRequirement = unitStats[3];
+            attack6 = Byte.parseByte(unitStats[4]);
+            attack20 = Byte.parseByte(unitStats[5]);
+            numberOfAttacks = Byte.parseByte(unitStats[6]);
+            defense = Byte.parseByte(unitStats[7]);
+            evasion = Byte.parseByte(unitStats[8]);
+            intelligence = Byte.parseByte(unitStats[9]);
+            life = Byte.parseByte(unitStats[10]);
+            gold = Byte.parseByte(unitStats[11]);
+            hero = Byte.parseByte(unitStats[12]);
+            u = new Unit(name, image, type, minRequirement, attack6,attack20,numberOfAttacks, defense,evasion,intelligence,life,gold,hero);
+            unitHashMap.put(name, u);
             count ++;
         }
-        return unitsList;
+        return unitHashMap;
     }
 }

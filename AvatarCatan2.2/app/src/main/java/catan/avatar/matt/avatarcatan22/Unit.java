@@ -1,10 +1,9 @@
 package catan.avatar.matt.avatarcatan22;
 public class Unit {
-    String name,image;
-    byte attack6,attack20,evasion,defense,life,intelligence,numberOfAttacks,type;
-    boolean hero;
+    String name,image, minRequirement;
+    byte attack6,attack20,evasion,defense,life,intelligence,numberOfAttacks,type, hero, gold;
 
-    public Unit(String name, String image, byte attack6, byte attack20, byte evasion, byte defense, byte life, byte intelligence, byte numberOfAttacks, byte type, boolean hero) {
+    public Unit(String name, String image, byte type, String minRequirement, byte attack6,byte attack20,byte numberOfAttacks, byte defense,byte evasion,byte intelligence,byte life,byte gold,byte hero) {
         this.name = name;
         this.image = image;
         this.attack6 = attack6;
@@ -16,6 +15,8 @@ public class Unit {
         this.numberOfAttacks = numberOfAttacks;
         this.type = type;
         this.hero = hero;
+        this.gold = gold;
+        this.minRequirement = minRequirement;
     }
 
     public Unit(){
