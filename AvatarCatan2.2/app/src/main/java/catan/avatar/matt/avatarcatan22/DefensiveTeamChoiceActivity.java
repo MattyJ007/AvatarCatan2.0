@@ -9,23 +9,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
-public class OffensiveTeamChoiceActivity extends AppCompatActivity {
+public class DefensiveTeamChoiceActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_offensive_team_choice);
+        setContentView(R.layout.activity_defensive_team_choice);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Button continueButt1 = (Button) findViewById(R.id.continueButt1);
-        continueButt1.setOnClickListener(new View.OnClickListener() {
+        Button continueButt2 = (Button) findViewById(R.id.continueButt2);
+        continueButt2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(OffensiveTeamChoiceActivity.this, DefensiveTeamChoiceActivity.class);
+                Intent intent = new Intent(DefensiveTeamChoiceActivity.this, SettlementChoiceActivity.class);
                 startActivity(intent);
             }
         });
     }
-
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="catan.avatar.matt.avatarcatan22.OffensiveTeamChoiceActivity">
+    tools:context="catan.avatar.matt.avatarcatan22.DefensiveTeamChoiceActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -21,6 +21,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_offensive_team_choice" />
+    <include layout="@layout/content_defensive_team_choice" />
 
 </android.support.design.widget.CoordinatorLayout>

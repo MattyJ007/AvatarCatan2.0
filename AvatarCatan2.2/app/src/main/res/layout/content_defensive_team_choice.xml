@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="catan.avatar.matt.avatarcatan22.OffensiveTeamChoiceActivity"
-    tools:showIn="@layout/activity_offensive_team_choice"
+    tools:context="catan.avatar.matt.avatarcatan22.DefensiveTeamChoiceActivity"
+    tools:showIn="@layout/activity_defensive_team_choice"
     android:background="#000000"
     >
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -30,22 +31,22 @@
                 android:id="@+id/textView2"
                 android:layout_weight="0.5"
                 android:gravity="left|center"
+                android:textColor="#83fc81"
                 android:textStyle="bold"
-                android:textColor="#c9c4c4"
                 android:textSize="25dp" />
 
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Team:"
                 android:id="@+id/textView3"
                 android:layout_weight="0.5"
                 android:gravity="left|center"
                 android:layout_gravity="bottom"
-                android:textColor="#c9c4c4"
+                android:textColor="#83fc81"
+                android:textStyle="bold"
                 android:textSize="25dp"
-                android:textStyle="bold" />
+                android:textAppearance="?android:attr/textAppearanceLarge" />
         </LinearLayout>
 
         <LinearLayout
@@ -80,10 +81,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:text="Continue"
-                android:id="@+id/continueButt1"
+                android:id="@+id/continueButt2"
                 android:layout_weight="0.1"
                 android:gravity="center"
-                android:background="#8a8484" />
+                android:background="#199624" />
         </LinearLayout>
 
     </LinearLayout>

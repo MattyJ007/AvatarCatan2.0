@@ -5,4 +5,7 @@
     <string name="title_activity_offensive_team_choice">OffensiveTeamChoiceActivity</string>
     <string name="title_activity_load_battle">LoadBattleActivity</string>
     <string name="title_activity_timer">TimerActivity</string>
+    <string name="title_activity_defensive_team_choice">DefensiveTeamChoiceActivity</string>
+    <string name="title_activity_settlement_choice">SettlementChoiceActivity</string>
+    <string name="title_activity_battle_ground">BattleGroundActivity</string>
 </resources>

@@ -60,6 +60,33 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="catan.avatar.matt.avatarcatan22.MainMenuActivity" />
         </activity>
+        <activity
+            android:name=".DefensiveTeamChoiceActivity"
+            android:label="@string/title_activity_defensive_team_choice"
+            android:parentActivityName=".OffensiveTeamChoiceActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="catan.avatar.matt.avatarcatan22.OffensiveTeamChoiceActivity" />
+        </activity>
+        <activity
+            android:name=".SettlementChoiceActivity"
+            android:label="@string/title_activity_settlement_choice"
+            android:parentActivityName=".DefensiveTeamChoiceActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="catan.avatar.matt.avatarcatan22.DefensiveTeamChoiceActivity" />
+        </activity>
+        <activity
+            android:name=".BattleGroundActivity"
+            android:label="@string/title_activity_battle_ground"
+            android:parentActivityName=".SettlementChoiceActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="catan.avatar.matt.avatarcatan22.SettlementChoiceActivity" />
+        </activity>
     </application>
 
 </manifest>
