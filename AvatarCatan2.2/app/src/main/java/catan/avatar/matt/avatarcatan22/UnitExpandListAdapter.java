@@ -1,6 +1,7 @@
 package catan.avatar.matt.avatarcatan22;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,16 +9,15 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.HashMap;
 import java.util.List;
 
 public class UnitExpandListAdapter extends BaseExpandableListAdapter {
     private Context ctx;
-    private HashMap<String, List<String>> unitsList;
+    private HashMap<String, List<Unit>> unitsList;
     private List<String> statsList;
 
-    public UnitExpandListAdapter(Context ctx, HashMap<String, List<String>> unitsList, List<String> statsList) {
+    public UnitExpandListAdapter(Context ctx, HashMap<String, List<Unit>> unitsList, List<String> statsList) {
         this.ctx = ctx;
         this.unitsList = unitsList;
         this.statsList = statsList;
@@ -40,7 +40,13 @@ public class UnitExpandListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int parent, int child) {
-        return unitsList.get(statsList.get(parent)).get(child);
+        return unitsList.get(statsList.get(parent)).get(0).getStats();
+    }
+    public Byte getChildGold(int parent) {
+        return unitsList.get(statsList.get(parent)).get(0).getGold();
+    }
+    public String getChildPic(int parent) {
+        return unitsList.get(statsList.get(parent)).get(0).getImage();
     }
 
     @Override
@@ -61,14 +67,21 @@ public class UnitExpandListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertview, ViewGroup parentview) {
         String group_title = (String) getGroup(groupPosition);
+        String goldValue = (getChildGold(groupPosition) + " Gold");
         if(convertview == null)
         {
             LayoutInflater inflator = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertview = inflator.inflate(R.layout.expanded_list_parent, parentview,false);
         }
         TextView parent_textview = (TextView) convertview.findViewById(R.id.textView10);
+        TextView gold_text = (TextView) convertview.findViewById(R.id.textView8);
+//        ImageView unitPic = (ImageView) convertview.findViewById(R.id.imageView);
+//        ImageView iv = (ImageView) convertview.findViewById(R.id.imageView);
+//        Bitmap bitmap = getBitmapFromAsset(unit.getUnitId());
+//        iv.setImageBitmap(bitmap);
         parent_textview.setTypeface(null, Typeface.BOLD);
         parent_textview.setText(group_title);
+        gold_text.setText(goldValue);
         return convertview;
     }
 

@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class UnitsActivity extends AppCompatActivity {
-    HashMap<String, List<String>> unitlist;
+    HashMap<String, List<Unit>> unitlist;
     List<String> statList;
     ExpandableListView exp_list;
     UnitExpandListAdapter adapter;
@@ -21,7 +21,6 @@ public class UnitsActivity extends AppCompatActivity {
         exp_list = (ExpandableListView) findViewById(R.id.expandableListView);
         UnitListDataProvider.setUnitHashMap();
         unitlist = UnitListDataProvider.getUnitHashMap();
-        System.out.println(unitlist.isEmpty());
         statList = new ArrayList<>(unitlist.keySet());
         adapter = new UnitExpandListAdapter(this, unitlist, statList);
         exp_list.setAdapter(adapter);

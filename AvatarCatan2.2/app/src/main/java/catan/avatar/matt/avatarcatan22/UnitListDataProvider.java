@@ -5,14 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 
 public class UnitListDataProvider {
-    private static HashMap<String, List<String>> unitHashMap;
+    private static HashMap<String, List<Unit>> unitHashMap;
     private static ArrayList<Unit> unitsArray;
 
     private static String[] units = { "Fire Nation Guy,fng,8,Town (Earth),1,0,1,10,0,0,5,2,1",
-            "A Water,awa,4,Village (Water),2,0,1,5,3,1,11,4,0",
-            "A Earth,aea,8,Village (Earth),2,0,1,10,0,1,12,4,0",
-            "A Air,aai,11,Village (Air),2,0,1,5,12,2,11,4,0",
-            "A Fire,afi,1,Village (Fire),3,0,1,0,0,1,10,5,0",
+            "Apprentice Water,awa,4,Village (Water),2,0,1,5,3,1,11,4,0",
+            "Apprentice Earth,aea,8,Village (Earth),2,0,1,10,0,1,12,4,0",
+            "Apprentice Air,aai,11,Village (Air),2,0,1,5,12,2,11,4,0",
+            "Apprentice Fire,afi,1,Village (Fire),3,0,1,0,0,1,10,5,0",
             "Guru Pathik,gur,12,Air Temple,2,0,1,20,25,10,10,5,1",
             "Hippo,hip,8,Town (Earth),2,0,1,5,0,0,23,6,1",
             "Sokka,sok,12,Southern Water Tribe,2,0,1,10,6,9,20,6,1",
@@ -22,16 +22,16 @@ public class UnitListDataProvider {
             "Jet,jet,12,Village & Not Fire Nation,2,0,1,10,9,8,25,8,1",
             "June,jun,12,Village,2,0,1,10,12,7,25,8,1",
             "Jinora,jin,11,City,4,0,2,5,24,8,15,8,1",
-            "M Air,mair,11,Town (Air),4,0,2,10,30,6,15,8,0",
-            "M Fire,mfi,2,Town (Fire),2,1,1,5,3,6,15,9,0",
-            "M Earth,mea,9,Town (Earth),1,1,1,20,3,5,18,9,0",
-            "M Water,mwa,5,Town (Water),5,0,2,15,15,6,17,9,0",
+            "Master Air,mair,11,Town (Air),4,0,2,10,30,6,15,8,0",
+            "Master Fire,mfi,2,Town (Fire),2,1,1,5,3,6,15,9,0",
+            "Master Earth,mea,9,Town (Earth),1,1,1,20,3,5,18,9,0",
+            "Master Water,mwa,5,Town (Water),5,0,2,15,15,6,17,9,0",
             "Spirit,spi,14,Spirit Defender Card,6,0,2,30,24,8,10,10,0",
             "Mako,mak,2,City,0,1,1,20,28,6,20,10,1",
             "Bolin,bol,10,City,1,1,1,25,15,6,20,10,1",
             "Mai,mai,12,City,1,1,1,0,15,7,25,10,1",
             "Sword Master Piandao,pia,12,Town (Fire),2,1,2,25,9,9,20,11,1",
-            "Swamp Monster Huu,huu,4,Village (Water),4,0,2,50,6,8,25,12,1",
+            "Swamp Monster,huu,4,Village (Water),4,0,2,50,6,8,25,12,1",
             "Katara,kat,6,Southern Water Tribe,6,0,3,20,18,7,20,12,1",
             "Combustion Man,com,3,2 Cities (Fire + Any),0,3,1,40,12,3,5,12,1",
             "Jeong Jeong,jeo,1,Town & Not Fire Nation,1,2,2,15,18,8,15,12,1",
@@ -41,7 +41,7 @@ public class UnitListDataProvider {
             "P'Li,pli,3,2 Cities (Fire + Any),0,3,1,0,15,6,10,13,1",
             "Tenzin,ten,11,City (Any) & Village (Air),4,1,3,20,12,8,20,13,1",
             "Admiral Zhou,zho,1,Kill Moon Spirit Card,0,2,1,20,6,6,25,13,1",
-            "Knowledge Spirit Wan Shi Tong,kno,14,Village (Earth) on Dessert Tile & Knowledge Spirit Card ,7,0,1,10,6,10,25,13,1",
+            "Knowledge Spirit,kno,14,Village (Earth) on Dessert Tile & Knowledge Spirit Card ,7,0,1,10,6,10,25,13,1",
             "Gharzan,gha,10,2 Cities (Fire + Earth),0,3,4,10,6,5,17,14,1",
             "Gyatso,gya,11,Air Temple,10,0,5,15,12,10,15,14,1",
             "Toph,top,9,City (Earth),1,2,2,10,21,7,25,14,1",
@@ -71,7 +71,7 @@ public class UnitListDataProvider {
         String name,image,minRequirement;
         String[] unitStats;
         String unitDisplayformat;
-        List<String> statsList;
+        List<Unit> statsList;
         byte attack6,attack20,gold,hero,evasion,defense,life,intelligence,numberOfAttacks,type;
         Unit u;
         for (String unit1 :units) {
@@ -91,13 +91,13 @@ public class UnitListDataProvider {
             gold = Byte.parseByte(unitStats[11]);
             hero = Byte.parseByte(unitStats[12]);
             u = new Unit(name, image, type, minRequirement, attack6,attack20,numberOfAttacks, defense,evasion,intelligence,life,gold,hero);
-            unitDisplayformat = ("Attack D6: " + attack6 + "\nAttack D20: " + attack20 + "\nDefense: "+defense + "\nEvasion: "+evasion+"\nLife: "+life+"\nIntelligence: "+intelligence+"\nNumber of Attacks: "+numberOfAttacks+"\nBending: " + type + "\n\nMinimum Requirement: "+ minRequirement +"\n");
-            statsList.add(unitDisplayformat);
+            //            statsList.add(unitDisplayformat);
+            statsList.add(u);
             unitHashMap.put(name,statsList);
             unitsArray.add(u);
         }
     }
-    static HashMap<String, List<String >> getUnitHashMap(){
+    static HashMap<String, List<Unit>> getUnitHashMap(){
         return unitHashMap;
     }
 

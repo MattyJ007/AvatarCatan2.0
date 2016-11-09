@@ -71,4 +71,13 @@ public class Unit {
     public String getImage() {
         return image;
     }
+
+    public byte getGold() {
+        return gold;
+    }
+
+    public String getStats(){
+        return ("Attack D6: " + attack6 + "\nAttack D20: " + attack20 + "\nDefense: "+defense + "\nEvasion: "+evasion+"\nLife: "+life+"\nIntelligence: "+intelligence+"\nNumber of Attacks: "+numberOfAttacks+"\nBending: " + type + "\n\nMinimum Requirement: "+ minRequirement +"\n");
+
+    }
 }
