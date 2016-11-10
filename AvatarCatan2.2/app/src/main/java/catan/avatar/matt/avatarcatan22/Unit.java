@@ -1,5 +1,5 @@
 package catan.avatar.matt.avatarcatan22;
-public class Unit {
+public class Unit implements Cloneable{
     String name,image, minRequirement, bendingType;
     byte attack6,attack20,evasion,defense,life,intelligence,numberOfAttacks,type, hero, gold;
 
@@ -18,6 +18,24 @@ public class Unit {
         this.gold = gold;
         this.minRequirement = minRequirement;
         this.bendingType = bendingType;
+    }
+
+    public Unit(String name, String image,byte type, byte attack6, byte attack20, byte numberOfAttacks,byte defense,byte evasion, byte intelligence, byte life, byte hero ) {
+        this.name = name;
+        this.image = image;
+        this.attack6 = attack6;
+        this.attack20 = attack20;
+        this.evasion = evasion;
+        this.defense = defense;
+        this.life = life;
+        this.intelligence = intelligence;
+        this.numberOfAttacks = numberOfAttacks;
+        this.type = type;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return new Unit(this.name,this.image,this.type,this.attack6,this.attack20,this.numberOfAttacks, this.defense,this.evasion,this.intelligence,this.life,this.hero);
     }
 
     public Unit(){
@@ -75,6 +93,10 @@ public class Unit {
 
     public byte getGold() {
         return gold;
+    }
+
+    public byte getHero() {
+        return hero;
     }
 
     public String getStats(){

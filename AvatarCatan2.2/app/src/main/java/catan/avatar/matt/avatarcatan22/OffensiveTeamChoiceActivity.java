@@ -5,13 +5,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-
 import java.util.List;
 
 public class OffensiveTeamChoiceActivity extends AppCompatActivity {
     private List<Unit> unitList = UnitListDataProvider.getMainUnitsList();
+    private List<Unit> attackingTeamUnits = AttackingTeamDataProvider.getAttackingTeamUnits();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,9 +29,31 @@ public class OffensiveTeamChoiceActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        final ListView offensiveHeroes = (ListView) findViewById(R.id.listView2);
+        final AttackingTeamChoiceAdapter adapter1 = new AttackingTeamChoiceAdapter(this,R.layout.list_unit_a,attackingTeamUnits);
+        offensiveHeroes.setAdapter(adapter1);
+
         ListView chooseOffensiveHeroes = (ListView) findViewById(R.id.listView);
         AttackingTeamChoiceAdapter adapter = new AttackingTeamChoiceAdapter(this,R.layout.list_unit_a, unitList);
         chooseOffensiveHeroes.setAdapter(adapter);
-        
+
+        offensiveHeroes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Unit unit = attackingTeamUnits.get(position);
+                AttackingTeamDataProvider.removeTeamMember(unit);
+                adapter1.notifyDataSetChanged();
+            }
+        });
+
+        chooseOffensiveHeroes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Unit unit = unitList.get(position);
+                AttackingTeamDataProvider.setTeamMember(unit);
+                adapter1.notifyDataSetChanged();
+            }
+        });
     }
 }

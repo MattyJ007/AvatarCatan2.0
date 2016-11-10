@@ -12,10 +12,12 @@ public class UnitListDataProvider {
         AssembleUnitList thread = new AssembleUnitList(mainUnitsList, unitHashMap);
         thread.start();
     }
+
     static HashMap<String, List<Unit>> getUnitHashMap(){
             return unitHashMap;
     }
-    public static List<Unit> getMainUnitsList() {
+
+    static List<Unit> getMainUnitsList() {
             return mainUnitsList;
     }
 }
