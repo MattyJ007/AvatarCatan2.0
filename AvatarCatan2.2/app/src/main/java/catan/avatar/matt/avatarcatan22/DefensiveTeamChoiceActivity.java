@@ -2,8 +2,6 @@ package catan.avatar.matt.avatarcatan22;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -30,7 +28,7 @@ public class DefensiveTeamChoiceActivity extends AppCompatActivity {
             }
         });
         ListView chooseOffensiveHeroes = (ListView) findViewById(R.id.listView);
-        OffensiveTeamChoiceAdapter adapter = new OffensiveTeamChoiceAdapter(this,R.layout.list_unit, unitList);
+        TeamChoiceAdapter adapter = new TeamChoiceAdapter(this,R.layout.list_unit, unitList);
         chooseOffensiveHeroes.setAdapter(adapter);
     }
 }
