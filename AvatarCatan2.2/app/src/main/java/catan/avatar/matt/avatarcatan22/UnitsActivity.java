@@ -19,11 +19,11 @@ public class UnitsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_units);
         exp_list = (ExpandableListView) findViewById(R.id.expandableListView);
-        UnitListDataProvider.setUnitHashMap();
         unitlist = UnitListDataProvider.getUnitHashMap();
         statList = new ArrayList<>(unitlist.keySet());
         adapter = new UnitExpandListAdapter(this, unitlist, statList);
         exp_list.setAdapter(adapter);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

@@ -52,5 +52,7 @@ public class MainMenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        //**gets unit info sorted before anything needs it.
+        UnitListDataProvider.setUnitsLists();
     }
 }

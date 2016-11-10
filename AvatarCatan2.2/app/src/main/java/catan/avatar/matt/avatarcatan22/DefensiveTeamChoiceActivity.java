@@ -8,9 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
+
+import java.util.List;
 
 public class DefensiveTeamChoiceActivity extends AppCompatActivity {
-
+    private List<Unit> unitList = UnitListDataProvider.getUnitsList();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,5 +29,8 @@ public class DefensiveTeamChoiceActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        ListView chooseOffensiveHeroes = (ListView) findViewById(R.id.listView);
+        OffensiveTeamChoiceAdapter adapter = new OffensiveTeamChoiceAdapter(this,R.layout.list_unit, unitList);
+        chooseOffensiveHeroes.setAdapter(adapter);
     }
 }

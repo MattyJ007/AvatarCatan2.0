@@ -1,9 +1,9 @@
 package catan.avatar.matt.avatarcatan22;
 public class Unit {
-    String name,image, minRequirement;
+    String name,image, minRequirement, bendingType;
     byte attack6,attack20,evasion,defense,life,intelligence,numberOfAttacks,type, hero, gold;
 
-    public Unit(String name, String image, byte type, String minRequirement, byte attack6,byte attack20,byte numberOfAttacks, byte defense,byte evasion,byte intelligence,byte life,byte gold,byte hero) {
+    public Unit(String name, String image, byte type, String minRequirement, byte attack6,byte attack20,byte numberOfAttacks, byte defense,byte evasion,byte intelligence,byte life,byte gold,byte hero, String bendingType) {
         this.name = name;
         this.image = image;
         this.attack6 = attack6;
@@ -17,6 +17,7 @@ public class Unit {
         this.hero = hero;
         this.gold = gold;
         this.minRequirement = minRequirement;
+        this.bendingType = bendingType;
     }
 
     public Unit(){
@@ -77,7 +78,7 @@ public class Unit {
     }
 
     public String getStats(){
-        return ("Attack D6: " + attack6 + "\nAttack D20: " + attack20 + "\nDefense: "+defense + "\nEvasion: "+evasion+"\nLife: "+life+"\nIntelligence: "+intelligence+"\nNumber of Attacks: "+numberOfAttacks+"\nBending: " + type + "\n\nMinimum Requirement: "+ minRequirement +"\n");
+        return ("Attack D6: " + attack6 + "\nAttack D20: " + attack20 + "\nDefense: "+defense + "\nEvasion: "+evasion+"\nLife: "+life+"\nIntelligence: "+intelligence+"\nNumber of Attacks: "+numberOfAttacks+"\nBending: " + bendingType + "\n\nMinimum Requirement: "+ minRequirement +"\n");
 
     }
 }

@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#767676"
+    android:background="#ffffff"
     >
 
     <LinearLayout
@@ -14,11 +14,13 @@
         android:gravity="left|center">
 
         <ImageView
-            android:layout_width="125dp"
-            android:layout_height="125dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:id="@+id/imageView"
             android:src="@drawable/avatar"
-            android:padding="5dp" />
+            android:paddingLeft="30dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -26,7 +28,6 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Kyoshi"
             android:id="@+id/textView10"
-            android:textColor="#ffffff"
             android:layout_weight="6"
             android:gravity="left|center"
             android:paddingLeft="10dp"

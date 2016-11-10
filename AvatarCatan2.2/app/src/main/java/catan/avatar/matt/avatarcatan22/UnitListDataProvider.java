@@ -6,7 +6,8 @@ import java.util.List;
 
 public class UnitListDataProvider {
     private static HashMap<String, List<Unit>> unitHashMap;
-    private static ArrayList<Unit> unitsArray;
+    private static List<Unit> unitsList;
+    private static HashMap<Byte,String> bendingtypes;
 
     private static String[] units = { "Fire Nation Guy,fng,8,Town (Earth),1,0,1,10,0,0,5,2,1",
             "Apprentice Water,awa,4,Village (Water),2,0,1,5,3,1,11,4,0",
@@ -65,12 +66,30 @@ public class UnitListDataProvider {
             "Face Stealer Koh,koh,14,Spirit Portal Open & Koh Assist Card,0,4,1,50,3,7,40,25,1",
             "Kyoshi,kyo,15,3 Settlements (Air + Fire + Water) & (Ba Sing Se or Omashu),3,4,3,35,9,7,35,27,1"
     };
-    static void setUnitHashMap(){
+    static void setUnitsLists(){
         unitHashMap = new HashMap<>();
-        unitsArray = new ArrayList<>();
-        String name,image,minRequirement;
+        bendingtypes = new HashMap<>();
+        unitsList = new ArrayList<>();
+        {
+            bendingtypes.put((byte)1,"Fire");
+            bendingtypes.put((byte)2,"Fire & Lightning");
+            bendingtypes.put((byte)3,"Combustion");
+            bendingtypes.put((byte)4,"Water");
+            bendingtypes.put((byte)5,"Water & Ice");
+            bendingtypes.put((byte)6,"Water, Ice & Blood");
+            bendingtypes.put((byte)7,"Psychic Blood");
+            bendingtypes.put((byte)8,"Earth");
+            bendingtypes.put((byte)9,"Earth & Metal");
+            bendingtypes.put((byte)10,"Earth & Lava");
+            bendingtypes.put((byte)11,"Air");
+            bendingtypes.put((byte)12,"None - Melee/Ranged/Hand to Hand Combat");
+            bendingtypes.put((byte)13,"None - Chi Blocker");
+            bendingtypes.put((byte)14,"None - Spirit");
+            bendingtypes.put((byte)15,"All Elements & Spirit");
+
+        }
+        String name,image,minRequirement,bengingType;
         String[] unitStats;
-        String unitDisplayformat;
         List<Unit> statsList;
         byte attack6,attack20,gold,hero,evasion,defense,life,intelligence,numberOfAttacks,type;
         Unit u;
@@ -80,6 +99,7 @@ public class UnitListDataProvider {
             name = unitStats[0];
             image = unitStats[1];
             type = Byte.parseByte(unitStats[2]);
+            bengingType = bendingtypes.get(type);
             minRequirement = unitStats[3];
             attack6 = Byte.parseByte(unitStats[4]);
             attack20 = Byte.parseByte(unitStats[5]);
@@ -90,18 +110,18 @@ public class UnitListDataProvider {
             life = Byte.parseByte(unitStats[10]);
             gold = Byte.parseByte(unitStats[11]);
             hero = Byte.parseByte(unitStats[12]);
-            u = new Unit(name, image, type, minRequirement, attack6,attack20,numberOfAttacks, defense,evasion,intelligence,life,gold,hero);
+            u = new Unit(name, image, type, minRequirement, attack6,attack20,numberOfAttacks, defense,evasion,intelligence,life,gold,hero, bengingType);
             //            statsList.add(unitDisplayformat);
             statsList.add(u);
+            unitsList.add(u);
             unitHashMap.put(name,statsList);
-            unitsArray.add(u);
         }
     }
     static HashMap<String, List<Unit>> getUnitHashMap(){
         return unitHashMap;
     }
 
-    static ArrayList<Unit> getUnitsArray() {
-        return unitsArray;
+    public static List<Unit> getUnitsList() {
+        return unitsList;
     }
 }

@@ -1,7 +1,6 @@
 package catan.avatar.matt.avatarcatan22;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,17 +67,19 @@ public class UnitExpandListAdapter extends BaseExpandableListAdapter {
     public View getGroupView(int groupPosition, boolean isExpanded, View convertview, ViewGroup parentview) {
         String group_title = (String) getGroup(groupPosition);
         String goldValue = (getChildGold(groupPosition) + " Gold");
+        String pic = getChildPic(groupPosition);
+
         if(convertview == null)
         {
             LayoutInflater inflator = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertview = inflator.inflate(R.layout.expanded_list_parent, parentview,false);
         }
+
         TextView parent_textview = (TextView) convertview.findViewById(R.id.textView10);
         TextView gold_text = (TextView) convertview.findViewById(R.id.textView8);
-//        ImageView unitPic = (ImageView) convertview.findViewById(R.id.imageView);
-//        ImageView iv = (ImageView) convertview.findViewById(R.id.imageView);
-//        Bitmap bitmap = getBitmapFromAsset(unit.getUnitId());
-//        iv.setImageBitmap(bitmap);
+        ImageView unitPic = (ImageView) convertview.findViewById(R.id.imageView);
+        int resource = ctx.getResources().getIdentifier(pic,"drawable",ctx.getPackageName());
+        unitPic.setImageResource(resource);
         parent_textview.setTypeface(null, Typeface.BOLD);
         parent_textview.setText(group_title);
         gold_text.setText(goldValue);
