@@ -11,10 +11,11 @@ import android.widget.TextView;
 import java.util.List;
 
 public class TeamChoiceAdapter extends ArrayAdapter<Unit> {
-
+    Context ctx;
     private List<Unit> unitList;
     public TeamChoiceAdapter(Context context, int resource, List<Unit> objects) {
         super(context, resource, objects);
+        ctx = context;
         unitList = objects;
     }
 
@@ -27,7 +28,8 @@ public class TeamChoiceAdapter extends ArrayAdapter<Unit> {
         TextView nameUnit = (TextView) convertView.findViewById(R.id.textView11);
         nameUnit.setText(unit.getName());
         ImageView unitPic = (ImageView) convertView.findViewById(R.id.imageView2);
-
+        int resource = ctx.getResources().getIdentifier(unit.getImage(),"drawable",ctx.getPackageName());
+        unitPic.setImageResource(resource);
         return convertView;
     }
 }
