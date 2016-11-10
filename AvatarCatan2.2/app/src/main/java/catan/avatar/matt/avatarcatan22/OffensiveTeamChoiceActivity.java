@@ -11,7 +11,7 @@ import android.widget.ListView;
 import java.util.List;
 
 public class OffensiveTeamChoiceActivity extends AppCompatActivity {
-    private List<Unit> unitList = UnitListDataProvider.getUnitsList();
+    private List<Unit> unitList = UnitListDataProvider.getMainUnitsList();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

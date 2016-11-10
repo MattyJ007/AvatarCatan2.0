@@ -1,13 +1,16 @@
 package catan.avatar.matt.avatarcatan22;
 
 import android.content.Intent;
+import android.provider.Telephony;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainMenuActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
 
+public class MainMenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +55,7 @@ public class MainMenuActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        //**gets unit info sorted before anything needs it.
-        UnitListDataProvider.setUnitsLists();
+        //**gets unit info sorted before anything needs it. Runs new thread.
+        UnitListDataProvider.setUnitData();
     }
 }
