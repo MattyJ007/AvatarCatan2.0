@@ -31,11 +31,11 @@ public class OffensiveTeamChoiceActivity extends AppCompatActivity {
         });
 
         final ListView offensiveHeroes = (ListView) findViewById(R.id.listView2);
-        final AttackingTeamChoiceAdapter adapter1 = new AttackingTeamChoiceAdapter(this,R.layout.list_unit_a,attackingTeamUnits);
+        final AttackingTeamChoiceAdapter adapter1 = new AttackingTeamChoiceAdapter(this,R.layout.list_unit,attackingTeamUnits);
         offensiveHeroes.setAdapter(adapter1);
 
         ListView chooseOffensiveHeroes = (ListView) findViewById(R.id.listView);
-        AttackingTeamChoiceAdapter adapter = new AttackingTeamChoiceAdapter(this,R.layout.list_unit_a, unitList);
+        AttackingTeamChoiceAdapter adapter = new AttackingTeamChoiceAdapter(this,R.layout.list_unit, unitList);
         chooseOffensiveHeroes.setAdapter(adapter);
 
         offensiveHeroes.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -37,6 +37,8 @@ public class MainMenuActivity extends AppCompatActivity {
         newBattle.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                AttackingTeamDataProvider.getAttackingTeamUnits().clear();
+                DefendingTeamDataProvider.getDefendingTeamUnits().clear();
                 Intent intent = new Intent(MainMenuActivity.this, OffensiveTeamChoiceActivity.class);
                 startActivity(intent);
             }

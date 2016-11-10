@@ -23,7 +23,7 @@ public class DefenseTeamChoiceAdapter extends ArrayAdapter<Unit> {
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView == null){
             LayoutInflater inflator = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflator.inflate(R.layout.list_unit_a, parent,false);
+            convertView = inflator.inflate(R.layout.list_unit, parent,false);
         }
         Unit unit = unitList.get(position);
         TextView nameUnit = (TextView) convertView.findViewById(R.id.textView11);

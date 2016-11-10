@@ -7,7 +7,7 @@ public class AttackingTeamDataProvider{
     private static  List<Unit> attackingTeamUnits = new ArrayList<>();
 
     public static void setTeamMember(Unit unit) {
-        AssembleAttackTeam aTeamThread = new AssembleAttackTeam(attackingTeamUnits, unit);
+        AssembleTeam aTeamThread = new AssembleTeam(attackingTeamUnits, unit);
         aTeamThread.start();
     }
     public static void removeTeamMember(Unit unit){
