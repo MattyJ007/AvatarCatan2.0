@@ -25,8 +25,10 @@ public class OffensiveTeamChoiceActivity extends AppCompatActivity {
         continueButt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(OffensiveTeamChoiceActivity.this, DefensiveTeamChoiceActivity.class);
-                startActivity(intent);
+                if (!AttackingTeamDataProvider.getAttackingTeamUnits().isEmpty()){
+                    Intent intent = new Intent(OffensiveTeamChoiceActivity.this, DefensiveTeamChoiceActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 

@@ -81,7 +81,7 @@
         <activity
             android:name=".BattleGroundActivity"
             android:label="@string/title_activity_battle_ground"
-            android:parentActivityName=".SettlementChoiceActivity"
+            android:parentActivityName=".MainMenuActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

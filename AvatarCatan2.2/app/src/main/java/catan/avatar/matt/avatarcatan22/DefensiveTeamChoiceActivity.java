@@ -26,8 +26,10 @@ public class DefensiveTeamChoiceActivity extends AppCompatActivity {
         continueButt2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DefensiveTeamChoiceActivity.this, SettlementChoiceActivity.class);
-                startActivity(intent);
+                if (!DefendingTeamDataProvider.getDefendingTeamUnits().isEmpty()){
+                    Intent intent = new Intent(DefensiveTeamChoiceActivity.this, SettlementChoiceActivity.class);
+                    startActivity(intent);
+                }
             }
         });
         ListView defensiveHeroes = (ListView) findViewById(R.id.listView4);
