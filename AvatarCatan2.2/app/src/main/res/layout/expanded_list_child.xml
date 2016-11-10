@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1"
-    android:background="#ffffff">
+    android:background="#16766c">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,6 +14,5 @@
         android:paddingBottom="10dp"
         android:textSize="18dp"
         android:textColor="#000000"
-        android:text="Attack6: 2\nAttack 20: 2\nEvasion: 10\nDefense: 30\nLife: 30\nIntelligence: 10\nBending Type: Phychic Blood Bending\nNumber of Attacks: 3\n \n\nMinimum Requirement:\n Southern Airtemple &amp; Southern Water Tribe + 3 Settlements(Water + Fire + Earth)"
-        android:background="#efefef" />
+        android:text="Attack6: 2\nAttack 20: 2\nEvasion: 10\nDefense: 30\nLife: 30\nIntelligence: 10\nBending Type: Phychic Blood Bending\nNumber of Attacks: 3\n \n\nMinimum Requirement:\n Southern Airtemple &amp; Southern Water Tribe + 3 Settlements(Water + Fire + Earth)" />
 </LinearLayout>

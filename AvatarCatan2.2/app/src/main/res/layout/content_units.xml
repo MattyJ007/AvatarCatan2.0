@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="catan.avatar.matt.avatarcatan22.UnitsActivity"
-    tools:showIn="@layout/activity_units"
-    android:background="#000000">
+    tools:showIn="@layout/activity_units">
 
     <ExpandableListView
         android:layout_width="match_parent"
@@ -16,6 +15,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="false"
-        android:divider="#444666"
-        android:dividerHeight="0.5dp"/>
+        android:divider="#ffffff"
+        android:dividerHeight="5dp"/>
 </RelativeLayout>

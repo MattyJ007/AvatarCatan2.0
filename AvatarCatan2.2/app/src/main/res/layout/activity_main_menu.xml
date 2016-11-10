@@ -8,7 +8,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="catan.avatar.matt.avatarcatan22.MainMenuActivity"
-    android:background="#040000">
+    android:background="#ffffff">
 
     <LinearLayout
         android:orientation="vertical"
@@ -23,11 +23,12 @@
             android:text="View Units"
             android:id="@+id/button2"
             android:layout_gravity="right|center_vertical"
-            android:backgroundTint="#ff2b35"
+            android:backgroundTint="#000000"
             android:textSize="60dp"
             android:layout_weight="0.25"
             android:clickable="false"
-            android:nestedScrollingEnabled="false" />
+            android:nestedScrollingEnabled="false"
+            android:textColor="#24beaf" />
 
         <Button
             android:layout_width="match_parent"
@@ -35,9 +36,10 @@
             android:text="Rules"
             android:id="@+id/button3"
             android:layout_gravity="center_horizontal|bottom"
-            android:backgroundTint="#bb0009"
+            android:backgroundTint="#000000"
             android:textSize="60dp"
-            android:layout_weight="0.25" />
+            android:layout_weight="0.25"
+            android:textColor="#24beaf" />
 
         <Button
             android:layout_width="match_parent"
@@ -45,9 +47,10 @@
             android:text="New Battle"
             android:id="@+id/button"
             android:layout_gravity="center_horizontal|top"
-            android:backgroundTint="#982929"
+            android:backgroundTint="#000000"
             android:textSize="60dp"
-            android:layout_weight="0.25" />
+            android:layout_weight="0.25"
+            android:textColor="#24beaf" />
 
         <Button
             android:layout_width="match_parent"
@@ -55,9 +58,10 @@
             android:text="Load Battle"
             android:id="@+id/button5"
             android:layout_gravity="center_horizontal|top"
-            android:backgroundTint="#404150"
+            android:backgroundTint="#000000"
             android:textSize="60dp"
-            android:layout_weight="0.25" />
+            android:layout_weight="0.25"
+            android:textColor="#24beaf" />
 
         <Button
             android:layout_width="match_parent"
@@ -65,9 +69,10 @@
             android:text="Timer"
             android:id="@+id/button4"
             android:layout_gravity="center_horizontal|top"
-            android:backgroundTint="#803179"
+            android:backgroundTint="#000000"
             android:textSize="60dp"
-            android:layout_weight="0.25" />
+            android:layout_weight="0.25"
+            android:textColor="#24beaf" />
 
     </LinearLayout>
 

@@ -10,19 +10,20 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class TeamChoiceAdapter extends ArrayAdapter<Unit> {
+public class AttackingTeamChoiceAdapter extends ArrayAdapter<Unit> {
     Context ctx;
     private List<Unit> unitList;
-    public TeamChoiceAdapter(Context context, int resource, List<Unit> objects) {
-        super(context, resource, objects);
+    public AttackingTeamChoiceAdapter(Context context, int resource, List<Unit> unitList) {
+        super(context, resource, unitList);
         ctx = context;
-        unitList = objects;
+        this.unitList = unitList;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView == null){
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_unit, parent,false);
+            LayoutInflater inflator = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflator.inflate(R.layout.list_unit_a, parent,false);
         }
         Unit unit = unitList.get(position);
         TextView nameUnit = (TextView) convertView.findViewById(R.id.textView11);

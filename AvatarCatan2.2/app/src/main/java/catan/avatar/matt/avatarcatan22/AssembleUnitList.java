@@ -7,10 +7,10 @@ import java.util.List;
 public class AssembleUnitList extends Thread{
     private static HashMap<String, List<Unit>> unitHashMap;
     private static List<Unit> mainUnitsList;
-    private static HashMap<Byte,String> bendingtypes;
+
     public AssembleUnitList(List<Unit> mainUnitsList, HashMap<String, List<Unit>> unitHashMap){
-        this.mainUnitsList = mainUnitsList;
-        this.unitHashMap = unitHashMap;
+        AssembleUnitList.mainUnitsList = mainUnitsList;
+        AssembleUnitList.unitHashMap = unitHashMap;
     }
     @Override
     public void run() {
@@ -80,7 +80,7 @@ public class AssembleUnitList extends Thread{
     private static void setUnitsLists(HashMap<String, List<Unit>> unitHashMap, List<Unit>mainUnitsList){
         synchronized (mainUnitsList){
             synchronized (unitHashMap) {
-                bendingtypes = new HashMap<>();
+                HashMap<Byte, String> bendingtypes = new HashMap<>();
                 {
                     bendingtypes.put((byte) 1, "Fire");
                     bendingtypes.put((byte) 2, "Fire & Lightning");

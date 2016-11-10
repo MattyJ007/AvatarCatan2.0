@@ -13,13 +13,9 @@ public class UnitListDataProvider {
         thread.start();
     }
     static HashMap<String, List<Unit>> getUnitHashMap(){
-
             return unitHashMap;
-
     }
     public static List<Unit> getMainUnitsList() {
-
             return mainUnitsList;
-
     }
 }

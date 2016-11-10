@@ -27,8 +27,8 @@ public class DefensiveTeamChoiceActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        ListView chooseOffensiveHeroes = (ListView) findViewById(R.id.listView);
-        TeamChoiceAdapter adapter = new TeamChoiceAdapter(this,R.layout.list_unit, unitList);
+        ListView chooseOffensiveHeroes = (ListView) findViewById(R.id.listView3);
+        DefenseTeamChoiceAdapter adapter = new DefenseTeamChoiceAdapter(this,R.layout.list_unit_d, unitList);
         chooseOffensiveHeroes.setAdapter(adapter);
     }
 }
