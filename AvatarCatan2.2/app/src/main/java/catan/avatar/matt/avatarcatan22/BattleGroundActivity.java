@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.GridView;
 
 public class BattleGroundActivity extends AppCompatActivity {
 
@@ -16,5 +17,6 @@ public class BattleGroundActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        GridView offensiveTeamGrid = findViewById(R.layout.)
     }
 }

@@ -9,7 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
-public class SettlementChoiceActivity extends AppCompatActivity {
+public class SettlementChoiceActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,35 +23,30 @@ public class SettlementChoiceActivity extends AppCompatActivity {
         Button set2 = (Button) findViewById(R.id.set2);
         Button set3 = (Button) findViewById(R.id.set3);
         Button set4 = (Button) findViewById(R.id.set4);
-
-        set1.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SettlementChoiceActivity.this, BattleGroundActivity.class);
-                startActivity(intent);
-            }
-        });
-        set2.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SettlementChoiceActivity.this, BattleGroundActivity.class);
-                startActivity(intent);
-            }
-        });
-        set3.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SettlementChoiceActivity.this, BattleGroundActivity.class);
-                startActivity(intent);
-            }
-        });
-        set4.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SettlementChoiceActivity.this, BattleGroundActivity.class);
-                startActivity(intent);
-            }
-        });
+        set1.setOnClickListener(this);
+        set2.setOnClickListener(this);
+        set3.setOnClickListener(this);
+        set4.setOnClickListener(this);
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.set1:
+                break;
+            case R.id.set2:
+                SettlementDefenceProvider.setSettlementEvasionBonus((byte)1);
+                break;
+            case R.id.set3:
+                SettlementDefenceProvider.setSettlementEvasionBonus((byte)2);
+                break;
+            case R.id.set4:
+                SettlementDefenceProvider.setSettlementEvasionBonus((byte)3);
+                break;
+            default:
+                break;
+        }
+        Intent intent = new Intent(this, BattleGroundActivity.class);
+        startActivity(intent);
+    }
 }
