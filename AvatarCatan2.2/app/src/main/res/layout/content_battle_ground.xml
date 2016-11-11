@@ -19,7 +19,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_gravity="center_horizontal"
             android:layout_weight="5"
             android:background="#ffffff"
@@ -27,62 +27,55 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 android:text="Offensive Army"
                 android:id="@+id/textView"
                 android:rotation="180"
-                android:layout_weight="1"
                 android:background="#24beaf"
                 android:gravity="center"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:layout_weight="6" />
 
-            <ScrollView
+            <GridView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/scrollView2"
-                android:layout_weight="9"
+                android:layout_height="fill_parent"
+                android:id="@+id/gridView"
+                android:clickable="false"
+                android:numColumns="5"
                 android:rotation="180"
-                android:fillViewport="false">
-
-                <GridView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/gridView" />
-            </ScrollView>
+                android:stretchMode="columnWidth"
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_gravity="center_horizontal"
             android:layout_weight="5"
             android:background="#ffffff"
             android:layout_marginTop="10dp">
 
-            <ScrollView
+            <GridView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/scrollView"
-                android:layout_weight="9"
-                android:fillViewport="false">
-
-                <GridView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/gridView2" />
-            </ScrollView>
+                android:layout_height="fill_parent"
+                android:id="@+id/gridView2"
+                android:clickable="false"
+                android:numColumns="5"
+                android:stretchMode="columnWidth"
+                android:layout_weight="1" />
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="fill_parent"
                 android:text="Defending Army"
                 android:id="@+id/textView4"
-                android:layout_weight="1"
                 android:background="#000000"
                 android:gravity="center"
                 android:textColor="#24beaf"
-                android:textSize="25dp" />
+                android:textSize="25dp"
+                android:layout_weight="6" />
+
         </LinearLayout>
 
     </LinearLayout>

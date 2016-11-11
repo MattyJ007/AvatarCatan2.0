@@ -23,6 +23,7 @@ public class MainMenuActivity extends AppCompatActivity {
         units.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                UnitListDataProvider.setUnitData();
                 Intent intent = new Intent(MainMenuActivity.this, UnitsActivity.class);
                 startActivity(intent);
             }
@@ -37,8 +38,8 @@ public class MainMenuActivity extends AppCompatActivity {
         newBattle.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                AttackingTeamDataProvider.getAttackingTeamUnits().clear();
-                DefendingTeamDataProvider.getDefendingTeamUnits().clear();
+                ArmiesDataProvider.setArmies();
+                UnitListDataProvider.setUnitData();
                 Intent intent = new Intent(MainMenuActivity.this, OffensiveTeamChoiceActivity.class);
                 startActivity(intent);
             }
@@ -46,6 +47,7 @@ public class MainMenuActivity extends AppCompatActivity {
         loadBattle.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                UnitListDataProvider.setUnitData();
                 Intent intent = new Intent(MainMenuActivity.this, LoadBattleActivity.class);
                 startActivity(intent);
             }
@@ -58,6 +60,5 @@ public class MainMenuActivity extends AppCompatActivity {
             }
         });
         //**gets unit info sorted before anything needs it. Runs new thread.
-        UnitListDataProvider.setUnitData();
     }
 }

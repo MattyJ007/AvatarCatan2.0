@@ -25,7 +25,7 @@ public class AssembleUnitList extends Thread{
             "Apprentice Earth,aea,8,Village (Earth),2,0,1,10,0,1,12,4,0",
             "Apprentice Air,aai,11,Village (Air),2,0,1,5,12,2,11,4,0",
             "Apprentice Fire,afi,1,Village (Fire),3,0,1,0,0,1,10,5,0",
-            "Guru Pathik,gur,12,Air Temple,2,0,1,20,25,10,10,5,1",
+            "Guru Pathik,pat,12,Air Temple,2,0,1,20,25,10,10,5,1",
             "Hippo,hip,8,Town (Earth),2,0,1,5,0,0,23,6,1",
             "Sokka,sok,12,Southern Water Tribe,2,0,1,10,6,9,20,6,1",
             "Boulder,bou,8,Town (Earth),2,0,1,5,0,1,23,6,1",

@@ -12,8 +12,6 @@ import java.util.List;
 
 public class OffensiveTeamChoiceActivity extends AppCompatActivity {
     private List<Unit> unitList = UnitListDataProvider.getMainUnitsList();
-    private List<Unit> attackingTeamUnits = AttackingTeamDataProvider.getAttackingTeamUnits();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +23,7 @@ public class OffensiveTeamChoiceActivity extends AppCompatActivity {
         continueButt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!AttackingTeamDataProvider.getAttackingTeamUnits().isEmpty()){
+                if (!ArmiesDataProvider.getArmies().getAttackingTeamUnits().isEmpty()){
                     Intent intent = new Intent(OffensiveTeamChoiceActivity.this, DefensiveTeamChoiceActivity.class);
                     startActivity(intent);
                 }
@@ -33,9 +31,9 @@ public class OffensiveTeamChoiceActivity extends AppCompatActivity {
         });
 
         final ListView offensiveHeroes = (ListView) findViewById(R.id.listView2);
-        final AttackingTeamChoiceAdapter adapter1 = new AttackingTeamChoiceAdapter(this,R.layout.list_unit,attackingTeamUnits);
+        final AttackingTeamChoiceAdapter adapter1 = new AttackingTeamChoiceAdapter(this,R.layout.list_unit,ArmiesDataProvider.getArmies().getAttackingTeamUnits());
         offensiveHeroes.setAdapter(adapter1);
-
+        System.out.println(unitList.size());
         ListView chooseOffensiveHeroes = (ListView) findViewById(R.id.listView);
         AttackingTeamChoiceAdapter adapter = new AttackingTeamChoiceAdapter(this,R.layout.list_unit, unitList);
         chooseOffensiveHeroes.setAdapter(adapter);
@@ -43,8 +41,8 @@ public class OffensiveTeamChoiceActivity extends AppCompatActivity {
         offensiveHeroes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Unit unit = attackingTeamUnits.get(position);
-                AttackingTeamDataProvider.removeTeamMember(unit);
+                Unit unit = ArmiesDataProvider.getArmies().getAttackingTeamUnits().get(position);
+                ArmiesDataProvider.getArmies().removeTeamMember(unit, 1);
                 adapter1.notifyDataSetChanged();
             }
         });
@@ -53,7 +51,7 @@ public class OffensiveTeamChoiceActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Unit unit = unitList.get(position);
-                AttackingTeamDataProvider.setTeamMember(unit);
+                ArmiesDataProvider.getArmies().setTeamMember(unit, 1);
                 adapter1.notifyDataSetChanged();
             }
         });

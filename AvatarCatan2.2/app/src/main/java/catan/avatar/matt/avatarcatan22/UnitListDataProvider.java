@@ -9,8 +9,10 @@ public class UnitListDataProvider {
     private static List<Unit> mainUnitsList = new ArrayList<>();
 
     public static void setUnitData(){
-        AssembleUnitList thread = new AssembleUnitList(mainUnitsList, unitHashMap);
-        thread.start();
+        if (mainUnitsList.isEmpty()){
+            AssembleUnitList thread = new AssembleUnitList(mainUnitsList, unitHashMap);
+            thread.start();
+        }
     }
 
     static HashMap<String, List<Unit>> getUnitHashMap(){

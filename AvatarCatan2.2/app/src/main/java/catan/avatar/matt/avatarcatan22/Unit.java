@@ -2,6 +2,7 @@ package catan.avatar.matt.avatarcatan22;
 public class Unit implements Cloneable{
     String name,image, minRequirement, bendingType;
     byte attack6,attack20,evasion,defense,life,intelligence,numberOfAttacks,type, hero, gold;
+    byte blocking =0;
 
     public Unit(String name, String image, byte type, String minRequirement, byte attack6,byte attack20,byte numberOfAttacks, byte defense,byte evasion,byte intelligence,byte life,byte gold,byte hero, String bendingType) {
         this.name = name;
@@ -31,6 +32,7 @@ public class Unit implements Cloneable{
         this.intelligence = intelligence;
         this.numberOfAttacks = numberOfAttacks;
         this.type = type;
+        this.hero = hero;
     }
 
     @Override
@@ -97,6 +99,14 @@ public class Unit implements Cloneable{
 
     public byte getHero() {
         return hero;
+    }
+
+    public byte getBlocking() {
+        return blocking;
+    }
+
+    public void setBlocking(byte blocking) {
+        this.blocking = blocking;
     }
 
     public String getStats(){

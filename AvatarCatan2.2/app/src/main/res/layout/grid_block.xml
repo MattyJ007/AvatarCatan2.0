@@ -1,53 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:padding="5dp">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:id="@+id/imageView3"
+        android:src="@drawable/avatar" />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center_vertical">
+        android:text="Avatar Kuruk"
+        android:id="@+id/gridname"
+        android:gravity="center"
+        android:textColor="#000000" />
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:id="@+id/imageView3"
-            android:src="@drawable/avatar" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="35"
+        android:id="@+id/gridlife"
+        android:gravity="center"
+        android:textColor="#2eb813"
+        android:textStyle="bold" />
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Avatar Kuruk"
-            android:id="@+id/textView5"
-            android:gravity="center"
-            android:textColor="#000000" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="●●●"
+        android:id="@+id/gridattack"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:textColor="#000000" />
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="35"
-            android:id="@+id/textView6"
-            android:gravity="center"
-            android:textColor="#2eb813"
-            android:textStyle="bold" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="[BLOCKING]"
+        android:id="@+id/blocking"
+        android:gravity="center"
+        android:textSize="10dp"
+        android:textColor="#fea01c" />
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="●●●"
-            android:id="@+id/textView12"
-            android:gravity="center"
-            android:textSize="25dp"
-            android:textColor="#000000" />
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="[BLOCKING]"
-            android:id="@+id/textView13"
-            android:gravity="center"
-            android:textSize="10dp"
-            android:textColor="#f60000" />
-    </LinearLayout>
 </LinearLayout>
