@@ -17,6 +17,8 @@ public class BattleGroundActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        GridView offensiveTeamGrid = findViewById(R.layout.)
+        GridView offensiveTeamGrid = (GridView) findViewById(R.id.gridView);
+
+        GridView defensiveTeamGrid = (GridView) findViewById(R.id.gridView2);
     }
 }
