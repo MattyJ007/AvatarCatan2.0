@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:id="@+id/gridView"
-                android:clickable="false"
+                android:clickable="true"
                 android:numColumns="5"
                 android:rotation="180"
                 android:stretchMode="columnWidth"
@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:id="@+id/gridView2"
-                android:clickable="false"
+                android:clickable="true"
                 android:numColumns="5"
                 android:stretchMode="columnWidth"
                 android:layout_weight="1" />

@@ -10,7 +10,7 @@ public class UnitListDataProvider {
 
     public static void setUnitData(){
         if (mainUnitsList.isEmpty()){
-            AssembleUnitList thread = new AssembleUnitList(mainUnitsList, unitHashMap);
+            AssembleUnitListThread thread = new AssembleUnitListThread(mainUnitsList, unitHashMap);
             thread.start();
         }
     }

@@ -1,12 +1,11 @@
 package catan.avatar.matt.avatarcatan22;
 
-        import android.os.Bundle;
-        import android.support.v7.app.AppCompatActivity;
-        import android.support.v7.widget.Toolbar;
-        import android.view.View;
-        import android.widget.AdapterView;
-        import android.widget.GridView;
-        import java.util.List;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.GridView;
 
 public class BattleGroundActivity extends AppCompatActivity {
     @Override
@@ -15,6 +14,7 @@ public class BattleGroundActivity extends AppCompatActivity {
         setContentView(R.layout.activity_battle_ground);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         GridView offensiveTeamGrid = (GridView) findViewById(R.id.gridView);
         final BattleGroundAdapter adapter = new BattleGroundAdapter(this, R.layout.grid_block, ArmiesDataProvider.getArmies().getAttackingTeamUnits());
@@ -24,10 +24,13 @@ public class BattleGroundActivity extends AppCompatActivity {
         final BattleGroundAdapter adapter1 = new BattleGroundAdapter(this, R.layout.grid_block, ArmiesDataProvider.getArmies().getDefendingTeamUnits());
         defensiveTeamGrid.setAdapter(adapter1);
 
+        BattleHandler.setBattleHandlerVariables();
+
         offensiveTeamGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Unit unit = ArmiesDataProvider.getArmies().getAttackingTeamUnits().get(position);
+                BattleHandler.setUnit(unit, 1);
                 adapter.notifyDataSetChanged();
                 adapter1.notifyDataSetChanged();
             }
@@ -36,6 +39,7 @@ public class BattleGroundActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Unit unit = ArmiesDataProvider.getArmies().getDefendingTeamUnits().get(position);
+                BattleHandler.setUnit(unit, 0);
                 adapter.notifyDataSetChanged();
                 adapter1.notifyDataSetChanged();
             }

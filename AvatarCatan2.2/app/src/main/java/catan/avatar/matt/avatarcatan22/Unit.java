@@ -41,7 +41,7 @@ public class Unit implements Cloneable{
     }
 
     public Unit(){
-        name = "unit";
+        name = "Default Unit";
         attack6 = 1;
         attack20 = 0;
         evasion = 0;
@@ -107,6 +107,10 @@ public class Unit implements Cloneable{
 
     public void setBlocking(byte blocking) {
         this.blocking = blocking;
+    }
+
+    public void setLife(byte life) {
+        this.life = life;
     }
 
     public String getStats(){

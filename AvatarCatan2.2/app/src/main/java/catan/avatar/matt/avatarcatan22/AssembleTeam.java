@@ -28,7 +28,6 @@ public class AssembleTeam extends Thread{
                             teamUnits.add(unit1);
                         } else if (!ArmiesDataProvider.getArmies().getDefendingTeamUnits().contains(unit) && !ArmiesDataProvider.getArmies().getAttackingTeamUnits().contains(unit)){
                             teamUnits.add(unit);
-                            System.out.println(unit);
                         }
                     } catch (CloneNotSupportedException e) {
                         System.out.println(e.getMessage());
