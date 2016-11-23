@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class AssembleUnitListThread extends Thread{
+public class ThreadAssembleUnitList extends Thread{
     private static HashMap<String, List<Unit>> unitHashMap;
     private static List<Unit> mainUnitsList;
 
-    public AssembleUnitListThread(List<Unit> mainUnitsList, HashMap<String, List<Unit>> unitHashMap){
-        AssembleUnitListThread.mainUnitsList = mainUnitsList;
-        AssembleUnitListThread.unitHashMap = unitHashMap;
+    public ThreadAssembleUnitList(List<Unit> mainUnitsList, HashMap<String, List<Unit>> unitHashMap){
+        ThreadAssembleUnitList.mainUnitsList = mainUnitsList;
+        ThreadAssembleUnitList.unitHashMap = unitHashMap;
     }
     @Override
     public void run() {

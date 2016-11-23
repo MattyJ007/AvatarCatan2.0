@@ -1,19 +1,19 @@
 package catan.avatar.matt.avatarcatan22;
 
-        import android.content.Context;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.ArrayAdapter;
-        import android.widget.ImageView;
-        import android.widget.TextView;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-        import java.util.List;
+import java.util.List;
 
-public class DefenseTeamChoiceAdapter extends ArrayAdapter<Unit> {
+public class AdapterDefenseTeamChoice extends ArrayAdapter<Unit> {
     Context ctx;
     private List<Unit> unitList;
-    public DefenseTeamChoiceAdapter(Context context, int resource, List<Unit> unitList) {
+    public AdapterDefenseTeamChoice(Context context, int resource, List<Unit> unitList) {
         super(context, resource, unitList);
         ctx = context;
         this.unitList = unitList;

@@ -2,24 +2,24 @@ package catan.avatar.matt.avatarcatan22;
 
 import java.util.ArrayList;
 
-import static catan.avatar.matt.avatarcatan22.BattleHandler.getCurrentAttackingUnit;
-import static catan.avatar.matt.avatarcatan22.BattleHandler.getCurrentDefendingUnits;
-import static catan.avatar.matt.avatarcatan22.BattleHandler.getUnitsFinishedAttacking;
-import static catan.avatar.matt.avatarcatan22.BattleHandler.isAttackerTurn;
-import static catan.avatar.matt.avatarcatan22.BattleHandler.setAttackerTurn;
-import static catan.avatar.matt.avatarcatan22.BattleHandler.setCurrentAttackingUnit;
-import static catan.avatar.matt.avatarcatan22.BattleHandler.setCurrentDefendingUnits;
-import static catan.avatar.matt.avatarcatan22.BattleHandler.setUnitsFinishedAttacking;
+import static catan.avatar.matt.avatarcatan22.DataProviderBattle.getCurrentAttackingUnit;
+import static catan.avatar.matt.avatarcatan22.DataProviderBattle.getCurrentDefendingUnits;
+import static catan.avatar.matt.avatarcatan22.DataProviderBattle.getUnitsFinishedAttacking;
+import static catan.avatar.matt.avatarcatan22.DataProviderBattle.isAttackerTurn;
+import static catan.avatar.matt.avatarcatan22.DataProviderBattle.setAttackerTurn;
+import static catan.avatar.matt.avatarcatan22.DataProviderBattle.setCurrentAttackingUnit;
+import static catan.avatar.matt.avatarcatan22.DataProviderBattle.setCurrentDefendingUnits;
+import static catan.avatar.matt.avatarcatan22.DataProviderBattle.setUnitsFinishedAttacking;
 
-public class BattleHandlerThread {
+public class ThreadBattleHandler {
     private static Unit unit;
     private static int team;
 
 
     public static void battleHandlerThread(Unit unit, int team) {
-        BattleHandlerThread.unit = unit;
-        BattleHandlerThread.team = team;
-        selectUnit(BattleHandlerThread.unit, BattleHandlerThread.team);
+        ThreadBattleHandler.unit = unit;
+        ThreadBattleHandler.team = team;
+        selectUnit(ThreadBattleHandler.unit, ThreadBattleHandler.team);
     }
 
     private static void selectUnit(Unit unit, int team) {
@@ -63,7 +63,7 @@ public class BattleHandlerThread {
                 setCurrentDefendingUnits(new ArrayList<Unit>());
             }
             //**Offensive team turn - therefore need to select unit from defending side to be attacked
-            else if (BattleHandler.isAttackerTurn()) {
+            else if (DataProviderBattle.isAttackerTurn()) {
                 if (team == 0) {
                     getCurrentDefendingUnits().add(unit);
                     if (getCurrentDefendingUnits().size() == getCurrentAttackingUnit().getNumberOfAttacks()) {
@@ -71,7 +71,7 @@ public class BattleHandlerThread {
                         getUnitsFinishedAttacking().add(getCurrentAttackingUnit());
                         setCurrentDefendingUnits(new ArrayList<Unit>());
                         setCurrentAttackingUnit(null);
-                        if (getUnitsFinishedAttacking().size() == ArmiesDataProvider.getArmies().getAttackingTeamUnits().size()) {
+                        if (getUnitsFinishedAttacking().size() == DataProviderArmies.getArmies().getAttackingTeamUnits().size()) {
                             setAttackerTurn(false);
                             setUnitsFinishedAttacking(new ArrayList<Unit>());
                             System.out.println("Change turns");
@@ -92,8 +92,8 @@ public class BattleHandlerThread {
                         getUnitsFinishedAttacking().add(getCurrentAttackingUnit());
                         setCurrentDefendingUnits(new ArrayList<Unit>());
                         setCurrentAttackingUnit(null);
-                        if (getUnitsFinishedAttacking().size() == ArmiesDataProvider.getArmies().getDefendingTeamUnits().size()) {
-                            BattleHandler.setAttackerTurn(true);
+                        if (getUnitsFinishedAttacking().size() == DataProviderArmies.getArmies().getDefendingTeamUnits().size()) {
+                            DataProviderBattle.setAttackerTurn(true);
                             setUnitsFinishedAttacking(new ArrayList<Unit>());
                             System.out.println("Change turns");
                         }

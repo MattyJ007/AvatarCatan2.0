@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-public class BattleGroundActivity extends AppCompatActivity {
+public class ActivityBattleGround extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,20 +17,20 @@ public class BattleGroundActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         GridView offensiveTeamGrid = (GridView) findViewById(R.id.gridView);
-        final BattleGroundAdapter adapter = new BattleGroundAdapter(this, R.layout.grid_block, ArmiesDataProvider.getArmies().getAttackingTeamUnits());
+        final AdapterBattleGround adapter = new AdapterBattleGround(this, R.layout.grid_block, DataProviderArmies.getArmies().getAttackingTeamUnits());
         offensiveTeamGrid.setAdapter(adapter);
 
         GridView defensiveTeamGrid = (GridView) findViewById(R.id.gridView2);
-        final BattleGroundAdapter adapter1 = new BattleGroundAdapter(this, R.layout.grid_block, ArmiesDataProvider.getArmies().getDefendingTeamUnits());
+        final AdapterBattleGround adapter1 = new AdapterBattleGround(this, R.layout.grid_block, DataProviderArmies.getArmies().getDefendingTeamUnits());
         defensiveTeamGrid.setAdapter(adapter1);
 
-        BattleHandler.setBattleHandlerVariables();
+        DataProviderBattle.setBattleHandlerVariables();
 
         offensiveTeamGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Unit unit = ArmiesDataProvider.getArmies().getAttackingTeamUnits().get(position);
-                BattleHandler.setUnit(unit, 1);
+                Unit unit = DataProviderArmies.getArmies().getAttackingTeamUnits().get(position);
+                DataProviderBattle.setUnit(unit, 1);
                 adapter.notifyDataSetChanged();
                 adapter1.notifyDataSetChanged();
             }
@@ -38,8 +38,8 @@ public class BattleGroundActivity extends AppCompatActivity {
         defensiveTeamGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Unit unit = ArmiesDataProvider.getArmies().getDefendingTeamUnits().get(position);
-                BattleHandler.setUnit(unit, 0);
+                Unit unit = DataProviderArmies.getArmies().getDefendingTeamUnits().get(position);
+                DataProviderBattle.setUnit(unit, 0);
                 adapter.notifyDataSetChanged();
                 adapter1.notifyDataSetChanged();
             }

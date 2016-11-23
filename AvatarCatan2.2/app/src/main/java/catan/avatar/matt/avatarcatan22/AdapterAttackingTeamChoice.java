@@ -10,10 +10,10 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class AttackingTeamChoiceAdapter extends ArrayAdapter<Unit> {
+public class AdapterAttackingTeamChoice extends ArrayAdapter<Unit> {
     Context ctx;
     private List<Unit> unitList;
-    public AttackingTeamChoiceAdapter(Context context, int resource, List<Unit> unitList) {
+    public AdapterAttackingTeamChoice(Context context, int resource, List<Unit> unitList) {
         super(context, resource, unitList);
         ctx = context;
         this.unitList = unitList;

@@ -2,7 +2,7 @@ package catan.avatar.matt.avatarcatan22;
 
 import java.util.ArrayList;
 
-public class BattleHandler {
+public class DataProviderBattle {
     private static boolean attackerTurn;
     private static Unit currentAttackingUnit;
     //    private static ArrayList<Unit> currentlyBlockingUnits;
@@ -10,7 +10,7 @@ public class BattleHandler {
     private static ArrayList<Unit> unitsFinishedAttacking;
 
     public static void setUnit(Unit unit, int team) {
-        BattleHandlerThread.battleHandlerThread(unit, team);
+        ThreadBattleHandler.battleHandlerThread(unit, team);
     }
 
     public static boolean isAttackerTurn() {
@@ -18,7 +18,7 @@ public class BattleHandler {
     }
 
     public static void setAttackerTurn(boolean attackerTurn) {
-        BattleHandler.attackerTurn = attackerTurn;
+        DataProviderBattle.attackerTurn = attackerTurn;
     }
 
     public static void setBattleHandlerVariables() {
@@ -33,7 +33,7 @@ public class BattleHandler {
     }
 
     public static void setCurrentAttackingUnit(Unit currentAttackingUnit) {
-        BattleHandler.currentAttackingUnit = currentAttackingUnit;
+        DataProviderBattle.currentAttackingUnit = currentAttackingUnit;
     }
 
 //    public static ArrayList<Unit> getCurrentlyBlockingUnits() {
@@ -41,7 +41,7 @@ public class BattleHandler {
 //    }
 //
 //    public static void setCurrentlyBlockingUnits(ArrayList<Unit> currentlyBlockingUnits) {
-//        BattleHandler.currentlyBlockingUnits = currentlyBlockingUnits;
+//        DataProviderBattle.currentlyBlockingUnits = currentlyBlockingUnits;
 //    }
 
     public static ArrayList<Unit> getCurrentDefendingUnits() {
@@ -49,7 +49,7 @@ public class BattleHandler {
     }
 
     public static void setCurrentDefendingUnits(ArrayList<Unit> currentDefendingUnits) {
-        BattleHandler.currentDefendingUnits = currentDefendingUnits;
+        DataProviderBattle.currentDefendingUnits = currentDefendingUnits;
     }
 
     public static ArrayList<Unit> getUnitsFinishedAttacking() {
@@ -57,6 +57,6 @@ public class BattleHandler {
     }
 
     public static void setUnitsFinishedAttacking(ArrayList<Unit> unitsFinishedAttacking) {
-        BattleHandler.unitsFinishedAttacking = unitsFinishedAttacking;
+        DataProviderBattle.unitsFinishedAttacking = unitsFinishedAttacking;
     }
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="catan.avatar.matt.avatarcatan22.OffensiveTeamChoiceActivity"
+    tools:context=".ActivityOffensiveTeamChoice"
     tools:showIn="@layout/activity_offensive_team_choice"
     >
     <LinearLayout

@@ -8,15 +8,16 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import java.util.HashMap;
 import java.util.List;
 
-public class UnitExpandListAdapter extends BaseExpandableListAdapter {
+public class AdapterUnitExpandList extends BaseExpandableListAdapter {
     private Context ctx;
     private HashMap<String, List<Unit>> unitsList;
     private List<String> statsList;
 
-    public UnitExpandListAdapter(Context ctx, HashMap<String, List<Unit>> unitsList, List<String> statsList) {
+    public AdapterUnitExpandList(Context ctx, HashMap<String, List<Unit>> unitsList, List<String> statsList) {
         this.ctx = ctx;
         this.unitsList = unitsList;
         this.statsList = statsList;

@@ -1,5 +1,5 @@
 package catan.avatar.matt.avatarcatan22;
-public class BattleGroundDataProvider {
+public class DataProviderBattleGround {
     public static String getNumAttacks(Unit unit){
         String numAttacks = "";
         for (int i = 0; i<unit.getNumberOfAttacks(); i++){

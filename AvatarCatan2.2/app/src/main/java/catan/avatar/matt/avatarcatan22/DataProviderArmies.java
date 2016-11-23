@@ -1,5 +1,5 @@
 package catan.avatar.matt.avatarcatan22;
-public class ArmiesDataProvider {
+public class DataProviderArmies {
 
     private static Armies armies;
 

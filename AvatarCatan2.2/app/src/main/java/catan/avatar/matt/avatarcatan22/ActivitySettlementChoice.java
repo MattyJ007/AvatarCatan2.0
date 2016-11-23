@@ -2,14 +2,12 @@ package catan.avatar.matt.avatarcatan22;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
-public class SettlementChoiceActivity extends AppCompatActivity implements View.OnClickListener {
+public class ActivitySettlementChoice extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,18 +33,18 @@ public class SettlementChoiceActivity extends AppCompatActivity implements View.
             case R.id.set1:
                 break;
             case R.id.set2:
-                SettlementDefenceProvider.setSettlementEvasionBonus((byte)1);
+                DataProviderSettlementDefence.setSettlementEvasionBonus((byte)1);
                 break;
             case R.id.set3:
-                SettlementDefenceProvider.setSettlementEvasionBonus((byte)2);
+                DataProviderSettlementDefence.setSettlementEvasionBonus((byte)2);
                 break;
             case R.id.set4:
-                SettlementDefenceProvider.setSettlementEvasionBonus((byte)3);
+                DataProviderSettlementDefence.setSettlementEvasionBonus((byte)3);
                 break;
             default:
                 break;
         }
-        Intent intent = new Intent(this, BattleGroundActivity.class);
+        Intent intent = new Intent(this, ActivityBattleGround.class);
         startActivity(intent);
     }
 }

@@ -15,11 +15,11 @@ public class Armies {
 
     public void setTeamMember(Unit unit, int team) {
         if (team == 0){
-            AssembleTeam dTeamThread = new AssembleTeam(defendingTeamUnits, unit);
+            ThreadAssembleTeam dTeamThread = new ThreadAssembleTeam(defendingTeamUnits, unit);
             dTeamThread.start();
         }
         else{
-            AssembleTeam aTeamThread = new AssembleTeam(attackingTeamUnits, unit);
+            ThreadAssembleTeam aTeamThread = new ThreadAssembleTeam(attackingTeamUnits, unit);
             aTeamThread.start();
         }
     }

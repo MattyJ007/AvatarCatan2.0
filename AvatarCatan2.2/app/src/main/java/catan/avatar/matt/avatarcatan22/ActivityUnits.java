@@ -9,19 +9,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class UnitsActivity extends AppCompatActivity {
+public class ActivityUnits extends AppCompatActivity {
     HashMap<String, List<Unit>> unitlist;
     List<String> statList;
     ExpandableListView exp_list;
-    UnitExpandListAdapter adapter;
+    AdapterUnitExpandList adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_units);
         exp_list = (ExpandableListView) findViewById(R.id.expandableListView);
-        unitlist = UnitListDataProvider.getUnitHashMap();
+        unitlist = DataProviderUnitList.getUnitHashMap();
         statList = new ArrayList<>(unitlist.keySet());
-        adapter = new UnitExpandListAdapter(this, unitlist, statList);
+        adapter = new AdapterUnitExpandList(this, unitlist, statList);
         exp_list.setAdapter(adapter);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

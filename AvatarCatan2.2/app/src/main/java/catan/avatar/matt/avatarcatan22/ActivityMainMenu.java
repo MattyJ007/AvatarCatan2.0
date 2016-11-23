@@ -1,16 +1,12 @@
 package catan.avatar.matt.avatarcatan22;
 
 import android.content.Intent;
-import android.provider.Telephony;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class MainMenuActivity extends AppCompatActivity {
+public class ActivityMainMenu extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,39 +19,39 @@ public class MainMenuActivity extends AppCompatActivity {
         units.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                UnitListDataProvider.setUnitData();
-                Intent intent = new Intent(MainMenuActivity.this, UnitsActivity.class);
+                DataProviderUnitList.setUnitData();
+                Intent intent = new Intent(ActivityMainMenu.this, ActivityUnits.class);
                 startActivity(intent);
             }
         });
         rules.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainMenuActivity.this, RulesActivity.class);
+                Intent intent = new Intent(ActivityMainMenu.this, ActivityRules.class);
                 startActivity(intent);
             }
         });
         newBattle.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                ArmiesDataProvider.setArmies();
-                UnitListDataProvider.setUnitData();
-                Intent intent = new Intent(MainMenuActivity.this, OffensiveTeamChoiceActivity.class);
+                DataProviderArmies.setArmies();
+                DataProviderUnitList.setUnitData();
+                Intent intent = new Intent(ActivityMainMenu.this, ActivityOffensiveTeamChoice.class);
                 startActivity(intent);
             }
         });
         loadBattle.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                UnitListDataProvider.setUnitData();
-                Intent intent = new Intent(MainMenuActivity.this, LoadBattleActivity.class);
+                DataProviderUnitList.setUnitData();
+                Intent intent = new Intent(ActivityMainMenu.this, ActivityLoadBattle.class);
                 startActivity(intent);
             }
         });
         timer.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainMenuActivity.this, TimerActivity.class);
+                Intent intent = new Intent(ActivityMainMenu.this, ActivityTimer.class);
                 startActivity(intent);
             }
         });

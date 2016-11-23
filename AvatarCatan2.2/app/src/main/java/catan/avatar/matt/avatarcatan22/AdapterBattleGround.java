@@ -9,12 +9,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Locale;
 
-public class BattleGroundAdapter extends ArrayAdapter<Unit>{
+public class AdapterBattleGround extends ArrayAdapter<Unit>{
         private List<Unit> units;
         private Context ctx;
 
-        public BattleGroundAdapter(Context context, int resource, List<Unit> objects) {
+        public AdapterBattleGround(Context context, int resource, List<Unit> objects) {
             super(context, resource, objects);
             units = objects;
             ctx = context;
@@ -39,10 +40,10 @@ public class BattleGroundAdapter extends ArrayAdapter<Unit>{
             lifeText.setText(Byte.toString(unit.getLife()));
 
             TextView numAttsText = (TextView) convertView.findViewById(R.id.gridattack);
-            numAttsText.setText(BattleGroundDataProvider.getNumAttacks(unit));
+            numAttsText.setText(DataProviderBattleGround.getNumAttacks(unit));
 
             TextView blocking = (TextView) convertView.findViewById(R.id.blocking);
-            blocking.setText(BattleGroundDataProvider.blocking(unit));
+            blocking.setText(DataProviderBattleGround.blocking(unit));
 
             return convertView;
         }

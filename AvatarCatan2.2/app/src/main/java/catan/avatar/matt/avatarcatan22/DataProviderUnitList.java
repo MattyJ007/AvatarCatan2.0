@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class UnitListDataProvider {
+public class DataProviderUnitList {
     private static HashMap<String, List<Unit>> unitHashMap = new HashMap<>();
     private static List<Unit> mainUnitsList = new ArrayList<>();
 
     public static void setUnitData(){
         if (mainUnitsList.isEmpty()){
-            AssembleUnitListThread thread = new AssembleUnitListThread(mainUnitsList, unitHashMap);
+            ThreadAssembleUnitList thread = new ThreadAssembleUnitList(mainUnitsList, unitHashMap);
             thread.start();
         }
     }
