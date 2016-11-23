@@ -1,5 +1,7 @@
 package catan.avatar.matt.avatarcatan22;
 
+import android.view.View;
+
 import java.util.ArrayList;
 
 public class DataProviderBattle {
@@ -8,9 +10,18 @@ public class DataProviderBattle {
     //    private static ArrayList<Unit> currentlyBlockingUnits;
     private static ArrayList<Unit> currentDefendingUnits;
     private static ArrayList<Unit> unitsFinishedAttacking;
+    private static View currentAttackingUnitView;
 
-    public static void setUnit(Unit unit, int team) {
-        ThreadBattleHandler.battleHandlerThread(unit, team);
+    public static void setUnit(Unit unit, int team, View view) {
+        ThreadBattleHandler.battleHandlerThread(unit, team, view);
+    }
+
+    public static View getCurrentAttackingUnitView() {
+        return currentAttackingUnitView;
+    }
+
+    public static void setCurrentAttackingUnitView(View currentAttackingUnitView) {
+        DataProviderBattle.currentAttackingUnitView = currentAttackingUnitView;
     }
 
     public static boolean isAttackerTurn() {

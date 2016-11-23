@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 
 public class ActivityBattleGround extends AppCompatActivity {
     @Override
@@ -24,13 +25,16 @@ public class ActivityBattleGround extends AppCompatActivity {
         final AdapterBattleGround adapter1 = new AdapterBattleGround(this, R.layout.grid_block, DataProviderArmies.getArmies().getDefendingTeamUnits());
         defensiveTeamGrid.setAdapter(adapter1);
 
+        ControllerBattleGround.setOffensiveTeamText((TextView) findViewById(R.id.textView));
+        ControllerBattleGround.setDefensiveTeamText((TextView) findViewById(R.id.textView4));
+
         DataProviderBattle.setBattleHandlerVariables();
 
         offensiveTeamGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Unit unit = DataProviderArmies.getArmies().getAttackingTeamUnits().get(position);
-                DataProviderBattle.setUnit(unit, 1);
+                DataProviderBattle.setUnit(unit, 1,view);
                 adapter.notifyDataSetChanged();
                 adapter1.notifyDataSetChanged();
             }
@@ -39,7 +43,7 @@ public class ActivityBattleGround extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Unit unit = DataProviderArmies.getArmies().getDefendingTeamUnits().get(position);
-                DataProviderBattle.setUnit(unit, 0);
+                DataProviderBattle.setUnit(unit, 0, view);
                 adapter.notifyDataSetChanged();
                 adapter1.notifyDataSetChanged();
             }

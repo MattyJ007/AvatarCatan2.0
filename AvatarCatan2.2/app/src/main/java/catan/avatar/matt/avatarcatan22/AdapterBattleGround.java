@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
-import java.util.Locale;
 
 public class AdapterBattleGround extends ArrayAdapter<Unit>{
         private List<Unit> units;
