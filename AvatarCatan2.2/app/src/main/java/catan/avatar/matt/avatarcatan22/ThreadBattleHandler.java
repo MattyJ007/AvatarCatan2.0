@@ -36,7 +36,7 @@ public class ThreadBattleHandler {
                         setCurrentAttackingUnit(unit);
                         setCurrentAttackingUnitView(view);
                         ControllerBattleGround.getOffensiveTeamText().setText(unit.getName() + " is attacking");
-                        view.setBackgroundColor(Color.parseColor("#bafff8"));
+                        unit.getView().setBackgroundColor(Color.parseColor("#bafff8"));
                     } else {
                         ControllerBattleGround.getOffensiveTeamText().setText(unit.getName()+ " has already attacked");
                     }
@@ -53,7 +53,7 @@ public class ThreadBattleHandler {
                         setCurrentAttackingUnit(unit);
                         setCurrentAttackingUnitView(view);
                         ControllerBattleGround.getDefensiveTeamText().setText(unit.getName() + " is attacking");
-                        view.setBackgroundColor(Color.parseColor("#bafff8"));
+                        unit.getView().setBackgroundColor(Color.parseColor("#bafff8"));
                     } else {
                         ControllerBattleGround.getDefensiveTeamText().setText(unit.getName()+ " has already attacked");
                     }
@@ -66,7 +66,7 @@ public class ThreadBattleHandler {
             //**Allows player to deselect attacking unit
             if (getCurrentAttackingUnit() == unit) {
                 setCurrentAttackingUnit(null);
-                view.setBackgroundColor(Color.parseColor("#ffffff"));
+                unit.getView().setBackgroundColor(Color.parseColor("#ffffff"));
                 if (team == 0){
                     ControllerBattleGround.getDefensiveTeamText().setText(unit.getName() + " deselected");
                 }
@@ -81,10 +81,14 @@ public class ThreadBattleHandler {
             else if (DataProviderBattle.isAttackerTurn()) {
                 if (team == 0) {
                     getCurrentDefendingUnits().add(unit);
+                    unit.getView().setBackgroundColor(Color.parseColor("#FFFFE2DB"));
                     if (getCurrentDefendingUnits().size() == getCurrentAttackingUnit().getNumberOfAttacks()) {
-                        ControllerBattleGround.getOffensiveTeamText().setText(getCurrentAttackingUnit().getName() + " Attacks " + getCurrentDefendingUnits());
+                        ControllerBattleGround.getOffensiveTeamText().setText(getCurrentAttackingUnit().getName() + " Attacks");
                         getUnitsFinishedAttacking().add(getCurrentAttackingUnit());
-                        DataProviderBattle.getCurrentAttackingUnitView().setBackgroundColor(Color.parseColor("#ffffff"));
+                        getCurrentAttackingUnit().getView().setBackgroundColor(Color.parseColor("#ffffff"));
+                        for (Unit defendingUnit:getCurrentDefendingUnits()) {
+                            defendingUnit.getView().setBackgroundColor(Color.parseColor("#ffffff"));
+                        }
                         setCurrentDefendingUnits(new ArrayList<Unit>());
                         setCurrentAttackingUnit(null);
                         if (getUnitsFinishedAttacking().size() == DataProviderArmies.getArmies().getAttackingTeamUnits().size()) {
@@ -104,10 +108,14 @@ public class ThreadBattleHandler {
             else {
                 if (team == 1) {
                     getCurrentDefendingUnits().add(unit);
+                    unit.getView().setBackgroundColor(Color.parseColor("#FFFFE2DB"));
                     if (getCurrentDefendingUnits().size() == getCurrentAttackingUnit().getNumberOfAttacks()) {
-                        ControllerBattleGround.getDefensiveTeamText().setText(getCurrentAttackingUnit().getName() + " Attacks " + getCurrentDefendingUnits());
+                        ControllerBattleGround.getDefensiveTeamText().setText(getCurrentAttackingUnit().getName() + " Attacks");
                         getUnitsFinishedAttacking().add(getCurrentAttackingUnit());
-                        DataProviderBattle.getCurrentAttackingUnitView().setBackgroundColor(Color.parseColor("#ffffff"));
+                        getCurrentAttackingUnit().getView().setBackgroundColor(Color.parseColor("#ffffff"));
+                        for (Unit defendingUnit:getCurrentDefendingUnits()) {
+                            defendingUnit.getView().setBackgroundColor(Color.parseColor("#ffffff"));
+                        }
                         setCurrentDefendingUnits(new ArrayList<Unit>());
                         setCurrentAttackingUnit(null);
                         if (getUnitsFinishedAttacking().size() == DataProviderArmies.getArmies().getDefendingTeamUnits().size()) {

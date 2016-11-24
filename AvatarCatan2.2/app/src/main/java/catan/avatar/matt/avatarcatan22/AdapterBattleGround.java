@@ -44,6 +44,8 @@ public class AdapterBattleGround extends ArrayAdapter<Unit>{
             TextView blocking = (TextView) convertView.findViewById(R.id.blocking);
             blocking.setText(DataProviderBattleGround.blocking(unit));
 
+            unit.setView(convertView);
+
             return convertView;
         }
 }
