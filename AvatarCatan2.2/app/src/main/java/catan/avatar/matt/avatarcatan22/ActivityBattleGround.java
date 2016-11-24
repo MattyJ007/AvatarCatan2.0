@@ -34,7 +34,7 @@ public class ActivityBattleGround extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Unit unit = DataProviderArmies.getArmies().getAttackingTeamUnits().get(position);
-                DataProviderBattle.setUnit(unit, 1,view);
+                DataProviderBattle.setUnit(unit, 1);
                 adapter.notifyDataSetChanged();
                 adapter1.notifyDataSetChanged();
             }
@@ -43,7 +43,7 @@ public class ActivityBattleGround extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Unit unit = DataProviderArmies.getArmies().getDefendingTeamUnits().get(position);
-                DataProviderBattle.setUnit(unit, 0, view);
+                DataProviderBattle.setUnit(unit, 0);
                 adapter.notifyDataSetChanged();
                 adapter1.notifyDataSetChanged();
             }

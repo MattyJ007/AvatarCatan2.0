@@ -33,13 +33,13 @@ public class ActivitySettlementChoice extends AppCompatActivity implements View.
             case R.id.set1:
                 break;
             case R.id.set2:
-                DataProviderSettlementDefence.setSettlementEvasionBonus((byte)1);
+                DataProviderSettlementDefence.setSettlementEvasionBonus(10);
                 break;
             case R.id.set3:
-                DataProviderSettlementDefence.setSettlementEvasionBonus((byte)2);
+                DataProviderSettlementDefence.setSettlementEvasionBonus(20);
                 break;
             case R.id.set4:
-                DataProviderSettlementDefence.setSettlementEvasionBonus((byte)3);
+                DataProviderSettlementDefence.setSettlementEvasionBonus(30);
                 break;
             default:
                 break;

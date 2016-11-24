@@ -1,6 +1,7 @@
 package catan.avatar.matt.avatarcatan22;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Locale;
 
 public class AdapterBattleGround extends ArrayAdapter<Unit>{
         private List<Unit> units;
@@ -35,14 +37,22 @@ public class AdapterBattleGround extends ArrayAdapter<Unit>{
             TextView nameText = (TextView) convertView.findViewById(R.id.gridname);
             nameText.setText(unit.getName());
 
-            TextView lifeText = (TextView) convertView.findViewById(R.id.gridlife);
-            lifeText.setText(Byte.toString(unit.getLife()));
-
             TextView numAttsText = (TextView) convertView.findViewById(R.id.gridattack);
             numAttsText.setText(DataProviderBattleGround.getNumAttacks(unit));
 
             TextView blocking = (TextView) convertView.findViewById(R.id.blocking);
             blocking.setText(DataProviderBattleGround.blocking(unit));
+
+            TextView lifeText = (TextView) convertView.findViewById(R.id.gridlife);
+            lifeText.setText(String.format(Locale.ENGLISH,"%.2f", unit.getLife()));
+            if (unit.getLife()<5){
+                lifeText.setTextColor(Color.parseColor("#ff6512"));
+            }
+            if (unit.getLife()<0){
+                lifeText.setTextColor(Color.parseColor("#FFFF0000"));
+                numAttsText.setText("-");
+                blocking.setText(R.string.dead);
+            }
 
             unit.setView(convertView);
 

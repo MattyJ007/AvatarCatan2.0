@@ -1,12 +1,12 @@
 package catan.avatar.matt.avatarcatan22;
 public class DataProviderSettlementDefence {
-    private static byte settlementEvasionBonus = 0;
+    private static int settlementEvasionBonus = 0;
 
-    public static byte getSettlementEvasionBonus() {
+    public static int getSettlementEvasionBonus() {
         return settlementEvasionBonus;
     }
 
-    public static void setSettlementEvasionBonus(byte settlementEvasionBonus) {
+    public static void setSettlementEvasionBonus(int settlementEvasionBonus) {
         DataProviderSettlementDefence.settlementEvasionBonus = settlementEvasionBonus;
     }
 }

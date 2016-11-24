@@ -10,18 +10,14 @@ public class DataProviderBattle {
     //    private static ArrayList<Unit> currentlyBlockingUnits;
     private static ArrayList<Unit> currentDefendingUnits;
     private static ArrayList<Unit> unitsFinishedAttacking;
-    private static View currentAttackingUnitView;
+    private static ArrayList<Unit> deadAttackingUnits;
+    private static ArrayList<Unit> deadDefendingUnits;
 
-    public static void setUnit(Unit unit, int team, View view) {
-        ThreadBattleHandler.battleHandlerThread(unit, team, view);
-    }
 
-    public static View getCurrentAttackingUnitView() {
-        return currentAttackingUnitView;
-    }
 
-    public static void setCurrentAttackingUnitView(View currentAttackingUnitView) {
-        DataProviderBattle.currentAttackingUnitView = currentAttackingUnitView;
+
+    public static void setUnit(Unit unit, int team) {
+        ThreadBattleHandler.battleHandlerThread(unit, team);
     }
 
     public static boolean isAttackerTurn() {
@@ -37,6 +33,9 @@ public class DataProviderBattle {
 //        currentlyBlockingUnits = new ArrayList<>();
         currentDefendingUnits = new ArrayList<>();
         unitsFinishedAttacking = new ArrayList<>();
+        deadAttackingUnits = new ArrayList<>();
+        deadDefendingUnits = new ArrayList<>();
+
     }
 
     public static Unit getCurrentAttackingUnit() {
@@ -69,5 +68,21 @@ public class DataProviderBattle {
 
     public static void setUnitsFinishedAttacking(ArrayList<Unit> unitsFinishedAttacking) {
         DataProviderBattle.unitsFinishedAttacking = unitsFinishedAttacking;
+    }
+
+    public static ArrayList<Unit> getDeadAttackingUnits() {
+        return deadAttackingUnits;
+    }
+
+    public static void setDeadAttackingUnits(ArrayList<Unit> deadAttackingUnits) {
+        DataProviderBattle.deadAttackingUnits = deadAttackingUnits;
+    }
+
+    public static ArrayList<Unit> getDeadDefendingUnits() {
+        return deadDefendingUnits;
+    }
+
+    public static void setDeadDefendingUnits(ArrayList<Unit> deadDefendingUnits) {
+        DataProviderBattle.deadDefendingUnits = deadDefendingUnits;
     }
 }
