@@ -12,4 +12,5 @@
     <string name="Offensive_army_turn">Offensive army\'s turn</string>
     <string name="cant_attack_ownTeam">Can\'t attack own team</string>
     <string name="dead">[DEAD]</string>
+    <string name="title_activity_dick">Dick</string>
 </resources>
