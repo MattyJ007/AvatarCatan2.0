@@ -12,8 +12,7 @@ public class DataProviderBattle {
     private static ArrayList<Unit> unitsFinishedAttacking;
     private static ArrayList<Unit> deadAttackingUnits;
     private static ArrayList<Unit> deadDefendingUnits;
-
-
+    private static boolean blocking;
 
 
     public static void setUnit(Unit unit, int team) {
@@ -84,5 +83,13 @@ public class DataProviderBattle {
 
     public static void setDeadDefendingUnits(ArrayList<Unit> deadDefendingUnits) {
         DataProviderBattle.deadDefendingUnits = deadDefendingUnits;
+    }
+
+    public static boolean isBlocking() {
+        return blocking;
+    }
+
+    public static void setBlocking(boolean blocking) {
+        DataProviderBattle.blocking = blocking;
     }
 }

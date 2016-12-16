@@ -1,6 +1,7 @@
 package catan.avatar.matt.avatarcatan22;
 
 import android.graphics.Color;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -84,21 +85,8 @@ public class ThreadBattleHandler {
                     getCurrentDefendingUnits().add(unit);
                     unit.getView().setBackgroundColor(Color.parseColor("#FFFFE2DB"));
                     if (getCurrentDefendingUnits().size() == getCurrentAttackingUnit().getNumberOfAttacks()) {
-                        ControllerBattleGround.getOffensiveTeamText().setText(getCurrentAttackingUnit().getName() + " Attacks");
-                        rollDineForAttack();
-                        getUnitsFinishedAttacking().add(getCurrentAttackingUnit());
-                        getCurrentAttackingUnit().getView().setBackgroundColor(Color.parseColor("#ffffff"));
-                        for (Unit defendingUnit:getCurrentDefendingUnits()) {
-                            defendingUnit.getView().setBackgroundColor(Color.parseColor("#ffffff"));
-                        }
-                        setCurrentDefendingUnits(new ArrayList<Unit>());
-                        setCurrentAttackingUnit(null);
-                        if ((getUnitsFinishedAttacking().size()+getDeadAttackingUnits().size()) == DataProviderArmies.getArmies().getAttackingTeamUnits().size()) {
-                            setAttackerTurn(false);
-                            setUnitsFinishedAttacking(new ArrayList<Unit>());
-                            ControllerBattleGround.getOffensiveTeamText().setText("Defensive army's turn");
-                            ControllerBattleGround.getDefensiveTeamText().setText("Defensive Army");
-                        }
+                        setBlockers();
+//                        attack2();
                     }
                 } else {
                     ControllerBattleGround.getOffensiveTeamText().setText(R.string.cant_attack_ownTeam);
@@ -110,27 +98,27 @@ public class ThreadBattleHandler {
                     getCurrentDefendingUnits().add(unit);
                     unit.getView().setBackgroundColor(Color.parseColor("#FFFFE2DB"));
                     if (getCurrentDefendingUnits().size() == getCurrentAttackingUnit().getNumberOfAttacks()) {
-                        ControllerBattleGround.getDefensiveTeamText().setText(getCurrentAttackingUnit().getName() + " Attacks");
-                        rollDineForAttack();
-                        getUnitsFinishedAttacking().add(getCurrentAttackingUnit());
-                        getCurrentAttackingUnit().getView().setBackgroundColor(Color.parseColor("#ffffff"));
-                        for (Unit defendingUnit:getCurrentDefendingUnits()) {
-                            defendingUnit.getView().setBackgroundColor(Color.parseColor("#ffffff"));
-                        }
-                        setCurrentDefendingUnits(new ArrayList<Unit>());
-                        setCurrentAttackingUnit(null);
-                        if ((getUnitsFinishedAttacking().size() + getDeadDefendingUnits().size()) == DataProviderArmies.getArmies().getDefendingTeamUnits().size()) {
-                            DataProviderBattle.setAttackerTurn(true);
-                            setUnitsFinishedAttacking(new ArrayList<Unit>());
-                            ControllerBattleGround.getOffensiveTeamText().setText(R.string.Offensive_Army);
-                            ControllerBattleGround.getDefensiveTeamText().setText(R.string.Offensive_army_turn);
-                        }
+                        setBlockers();
+//                        attack1();
                     }
                 } else {
                     ControllerBattleGround.getDefensiveTeamText().setText(R.string.cant_attack_ownTeam);
                 }
             }
         }
+    }
+
+    private static void setBlockers() {
+        if (isAttackerTurn()){
+            ControllerBattleGround.getDefendingTeamNo().setVisibility(View.VISIBLE);
+            ControllerBattleGround.getDefendingTeamYes().setVisibility(View.VISIBLE);
+        }
+        else {
+            ControllerBattleGround.getAttackingTeamNo().setVisibility(View.VISIBLE);
+            ControllerBattleGround.getAttackingTeamYes().setVisibility(View.VISIBLE);
+        }
+        ControllerBattleGround.getAttackingArmyGrid().setEnabled(false);
+        ControllerBattleGround.getDefendingArmyGrid().setEnabled(false);
     }
 
     private static void rollDineForAttack(){
@@ -171,4 +159,43 @@ public class ThreadBattleHandler {
         }
     }
 
+    static void attack1(){
+        ControllerBattleGround.getDefensiveTeamText().setText(getCurrentAttackingUnit().getName() + " Attacks");
+        rollDineForAttack();
+        getUnitsFinishedAttacking().add(getCurrentAttackingUnit());
+        getCurrentAttackingUnit().getView().setBackgroundColor(Color.parseColor("#ffffff"));
+        for (Unit defendingUnit:getCurrentDefendingUnits()) {
+            defendingUnit.getView().setBackgroundColor(Color.parseColor("#ffffff"));
+        }
+        setCurrentDefendingUnits(new ArrayList<Unit>());
+        setCurrentAttackingUnit(null);
+        if ((getUnitsFinishedAttacking().size() + getDeadDefendingUnits().size()) == DataProviderArmies.getArmies().getDefendingTeamUnits().size()) {
+            DataProviderBattle.setAttackerTurn(true);
+            setUnitsFinishedAttacking(new ArrayList<Unit>());
+            ControllerBattleGround.getOffensiveTeamText().setText(R.string.Offensive_Army);
+            ControllerBattleGround.getDefensiveTeamText().setText(R.string.Offensive_army_turn);
+        }
+        ControllerBattleGround.getAttackingArmyGrid().setEnabled(true);
+        ControllerBattleGround.getDefendingArmyGrid().setEnabled(true);
+    }
+
+    static void attack2(){
+        ControllerBattleGround.getOffensiveTeamText().setText(getCurrentAttackingUnit().getName() + " Attacks");
+        rollDineForAttack();
+        getUnitsFinishedAttacking().add(getCurrentAttackingUnit());
+        getCurrentAttackingUnit().getView().setBackgroundColor(Color.parseColor("#ffffff"));
+        for (Unit defendingUnit:getCurrentDefendingUnits()) {
+            defendingUnit.getView().setBackgroundColor(Color.parseColor("#ffffff"));
+        }
+        setCurrentDefendingUnits(new ArrayList<Unit>());
+        setCurrentAttackingUnit(null);
+        if ((getUnitsFinishedAttacking().size()+getDeadAttackingUnits().size()) == DataProviderArmies.getArmies().getAttackingTeamUnits().size()) {
+            setAttackerTurn(false);
+            setUnitsFinishedAttacking(new ArrayList<Unit>());
+            ControllerBattleGround.getOffensiveTeamText().setText("Defensive army's turn");
+            ControllerBattleGround.getDefensiveTeamText().setText("Defensive Army");
+        }
+        ControllerBattleGround.getAttackingArmyGrid().setEnabled(true);
+        ControllerBattleGround.getDefendingArmyGrid().setEnabled(true);
+    }
 }
