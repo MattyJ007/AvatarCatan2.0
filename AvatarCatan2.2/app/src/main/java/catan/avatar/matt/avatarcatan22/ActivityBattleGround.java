@@ -11,8 +11,6 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
 
-import static catan.avatar.matt.avatarcatan22.ThreadBattleHandler.attack;
-
 public class ActivityBattleGround extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,19 +29,18 @@ public class ActivityBattleGround extends AppCompatActivity {
         defensiveTeamGrid.setAdapter(defenseGridAdapter);
 
         final Button attYes = (Button) findViewById(R.id.button15);
-        Button attNo = (Button) findViewById(R.id.button13);
         final Button defYes = (Button) findViewById(R.id.button14);
-        Button defNo = (Button) findViewById(R.id.button16);
 
         ControllerBattleGround.setAttackingArmyGrid(offensiveTeamGrid);
         ControllerBattleGround.setDefendingArmyGrid(defensiveTeamGrid);
 
-        ControllerBattleGround.setOffensiveTeamText((TextView) findViewById(R.id.textView));
-        ControllerBattleGround.setDefensiveTeamText((TextView) findViewById(R.id.textView4));
+        ControllerBattleGround.setOffensiveTeamText((TextView) findViewById(R.id.attArmyMain));
+        ControllerBattleGround.setDefensiveTeamText((TextView) findViewById(R.id.defArmyMain));
+        ControllerBattleGround.setAttInfoText((TextView) findViewById(R.id.attViewInfo));
+        ControllerBattleGround.setDefInfoText((TextView) findViewById(R.id.defViewInfo));
+        ControllerBattleGround.setCenterText((TextView) findViewById(R.id.centerText));
 
-        ControllerBattleGround.setAttackingTeamNo(attNo);
         ControllerBattleGround.setAttackingTeamYes(attYes);
-        ControllerBattleGround.setDefendingTeamNo(defNo);
         ControllerBattleGround.setDefendingTeamYes(defYes);
 
         DataProviderBattle.setBattleHandlerVariables();
@@ -70,63 +67,12 @@ public class ActivityBattleGround extends AppCompatActivity {
         attYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(attYes.getText().equals("Yes")){
-                    DataProviderBattle.setBlocking(true);
-                    ControllerBattleGround.getAttackingArmyGrid().setEnabled(true);
-                    ControllerBattleGround.getAttackingTeamYes().setText("Continue");
-                    ControllerBattleGround.getAttackingTeamNo().setVisibility(View.INVISIBLE);
-                }
-                else {
-                    DataProviderBattle.setBlocking(false);
-                    ControllerBattleGround.getDefendingArmyGrid().setEnabled(true);
-                    attack();
-                    attackGridAdapter.notifyDataSetChanged();
-                    defenseGridAdapter.notifyDataSetChanged();
-                    ControllerBattleGround.getAttackingTeamYes().setText("Yes");
-                    ControllerBattleGround.getAttackingTeamYes().setVisibility(View.INVISIBLE);
-                }
             }
         });
-        attNo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DataProviderBattle.setBlocking(false);
-                ControllerBattleGround.getAttackingTeamYes().setVisibility(View.INVISIBLE);
-                ControllerBattleGround.getAttackingTeamNo().setVisibility(View.INVISIBLE);
-                attack();
-                attackGridAdapter.notifyDataSetChanged();
-                defenseGridAdapter.notifyDataSetChanged();
-            }
-        });
+
         defYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (defYes.getText().equals("Yes")){
-                    DataProviderBattle.setBlocking(true);
-                    ControllerBattleGround.getDefendingArmyGrid().setEnabled(true);
-                    ControllerBattleGround.getDefendingTeamYes().setText("Continue");
-                    ControllerBattleGround.getDefendingTeamNo().setVisibility(View.INVISIBLE);
-                }
-                else{
-                    DataProviderBattle.setBlocking(false);
-                    ControllerBattleGround.getAttackingArmyGrid().setEnabled(true);
-                    attack();
-                    attackGridAdapter.notifyDataSetChanged();
-                    defenseGridAdapter.notifyDataSetChanged();
-                    ControllerBattleGround.getDefendingTeamYes().setText("Yes");
-                    ControllerBattleGround.getDefendingTeamYes().setVisibility(View.INVISIBLE);
-                }
-            }
-        });
-        defNo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DataProviderBattle.setBlocking(false);
-                ControllerBattleGround.getDefendingTeamYes().setVisibility(View.INVISIBLE);
-                ControllerBattleGround.getDefendingTeamNo().setVisibility(View.INVISIBLE);
-                attack();
-                attackGridAdapter.notifyDataSetChanged();
-                defenseGridAdapter.notifyDataSetChanged();
             }
         });
     }

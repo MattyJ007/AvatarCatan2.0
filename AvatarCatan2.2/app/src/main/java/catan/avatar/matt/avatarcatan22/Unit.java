@@ -4,12 +4,10 @@ import android.view.View;
 
 public class Unit implements Cloneable{
     String name,image, minRequirement, bendingType;
-    byte attack6,attack20,evasion,defense,intelligence,numberOfAttacks,type, hero, gold;
-    float life;
-    byte blocking =0;
+    byte accuracy, attack6,attack20,evasion,defense,intelligence,numberOfAttacks, numberOfAttacksUsed,type, hero, gold, life;
     View view;
 
-    public Unit(String name, String image, byte type, String minRequirement, byte attack6,byte attack20,byte numberOfAttacks, byte defense,byte evasion,byte intelligence,float life,byte gold,byte hero, String bendingType) {
+    public Unit(String name, String image, byte type, String minRequirement, byte attack6,byte attack20,byte numberOfAttacks, byte defense,byte evasion,byte intelligence,byte life,byte gold,byte hero, String bendingType) {
         this.name = name;
         this.image = image;
         this.attack6 = attack6;
@@ -26,7 +24,7 @@ public class Unit implements Cloneable{
         this.bendingType = bendingType;
     }
 
-    public Unit(String name, String image,byte type, byte attack6, byte attack20, byte numberOfAttacks,byte defense,byte evasion, byte intelligence, float life, byte hero ) {
+    public Unit(String name, String image,byte type, byte attack6, byte attack20, byte numberOfAttacks,byte defense,byte evasion, byte intelligence, byte life, byte hero ) {
         this.name = name;
         this.image = image;
         this.attack6 = attack6;
@@ -78,7 +76,7 @@ public class Unit implements Cloneable{
         return defense;
     }
 
-    public float getLife() {
+    public byte getLife() {
         return life;
     }
 
@@ -106,15 +104,7 @@ public class Unit implements Cloneable{
         return hero;
     }
 
-    public byte getBlocking() {
-        return blocking;
-    }
-
-    public void setBlocking(byte blocking) {
-        this.blocking = blocking;
-    }
-
-    public void setLife(float life) {
+    public void setLife(byte life) {
         this.life = life;
     }
 
