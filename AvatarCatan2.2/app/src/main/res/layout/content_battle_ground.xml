@@ -85,7 +85,7 @@
             android:clickable="true"
             android:numColumns="5"
             android:stretchMode="columnWidth"
-            />
+            android:background="#ffffff" />
     </LinearLayout>
 
     <LinearLayout

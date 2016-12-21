@@ -48,7 +48,7 @@ public class AdapterBattleGround extends ArrayAdapter<Unit>{
             if (unit.getLife()<5){
                 lifeText.setTextColor(Color.parseColor("#ff6512"));
             }
-            if (unit.getLife()<0){
+            if (unit.getLife()<0.01){
                 lifeText.setTextColor(Color.parseColor("#FFFF0000"));
                 numAttsText.setText("-");
                 blocking.setText(R.string.dead);

@@ -1,35 +1,34 @@
 package catan.avatar.matt.avatarcatan22;
 
-import android.view.View;
-
 import java.util.ArrayList;
 
-public class DataProviderBattle {
+class DataProviderBattle {
     private static boolean attackerTurn;
     private static Unit currentAttackingUnit;
-    //    private static ArrayList<Unit> currentlyBlockingUnits;
+    private static ArrayList<Unit> currentlyBlockingUnits;
     private static ArrayList<Unit> currentDefendingUnits;
     private static ArrayList<Unit> unitsFinishedAttacking;
     private static ArrayList<Unit> deadAttackingUnits;
     private static ArrayList<Unit> deadDefendingUnits;
     private static boolean blocking;
+    private static Unit currentUnitGettingBlocker;
 
 
-    public static void setUnit(Unit unit, int team) {
+    static void setUnit(Unit unit, int team) {
         ThreadBattleHandler.battleHandlerThread(unit, team);
     }
 
-    public static boolean isAttackerTurn() {
+    static boolean isAttackerTurn() {
         return attackerTurn;
     }
 
-    public static void setAttackerTurn(boolean attackerTurn) {
+    static void setAttackerTurn(boolean attackerTurn) {
         DataProviderBattle.attackerTurn = attackerTurn;
     }
 
-    public static void setBattleHandlerVariables() {
+    static void setBattleHandlerVariables() {
         attackerTurn = true;
-//        currentlyBlockingUnits = new ArrayList<>();
+        currentlyBlockingUnits = new ArrayList<>();
         currentDefendingUnits = new ArrayList<>();
         unitsFinishedAttacking = new ArrayList<>();
         deadAttackingUnits = new ArrayList<>();
@@ -37,39 +36,35 @@ public class DataProviderBattle {
 
     }
 
-    public static Unit getCurrentAttackingUnit() {
+    static Unit getCurrentAttackingUnit() {
         return currentAttackingUnit;
     }
 
-    public static void setCurrentAttackingUnit(Unit currentAttackingUnit) {
+    static void setCurrentAttackingUnit(Unit currentAttackingUnit) {
         DataProviderBattle.currentAttackingUnit = currentAttackingUnit;
     }
 
-//    public static ArrayList<Unit> getCurrentlyBlockingUnits() {
-//        return currentlyBlockingUnits;
-//    }
-//
-//    public static void setCurrentlyBlockingUnits(ArrayList<Unit> currentlyBlockingUnits) {
-//        DataProviderBattle.currentlyBlockingUnits = currentlyBlockingUnits;
-//    }
+    static ArrayList<Unit> getCurrentlyBlockingUnits() {
+        return currentlyBlockingUnits;
+    }
 
-    public static ArrayList<Unit> getCurrentDefendingUnits() {
+    static ArrayList<Unit> getCurrentDefendingUnits() {
         return currentDefendingUnits;
     }
 
-    public static void setCurrentDefendingUnits(ArrayList<Unit> currentDefendingUnits) {
+    static void setCurrentDefendingUnits(ArrayList<Unit> currentDefendingUnits) {
         DataProviderBattle.currentDefendingUnits = currentDefendingUnits;
     }
 
-    public static ArrayList<Unit> getUnitsFinishedAttacking() {
+    static ArrayList<Unit> getUnitsFinishedAttacking() {
         return unitsFinishedAttacking;
     }
 
-    public static void setUnitsFinishedAttacking(ArrayList<Unit> unitsFinishedAttacking) {
+    static void setUnitsFinishedAttacking(ArrayList<Unit> unitsFinishedAttacking) {
         DataProviderBattle.unitsFinishedAttacking = unitsFinishedAttacking;
     }
 
-    public static ArrayList<Unit> getDeadAttackingUnits() {
+    static ArrayList<Unit> getDeadAttackingUnits() {
         return deadAttackingUnits;
     }
 
@@ -77,7 +72,7 @@ public class DataProviderBattle {
         DataProviderBattle.deadAttackingUnits = deadAttackingUnits;
     }
 
-    public static ArrayList<Unit> getDeadDefendingUnits() {
+    static ArrayList<Unit> getDeadDefendingUnits() {
         return deadDefendingUnits;
     }
 
@@ -85,11 +80,19 @@ public class DataProviderBattle {
         DataProviderBattle.deadDefendingUnits = deadDefendingUnits;
     }
 
-    public static boolean isBlocking() {
+    static boolean isBlocking() {
         return blocking;
     }
 
-    public static void setBlocking(boolean blocking) {
+    static void setBlocking(boolean blocking) {
         DataProviderBattle.blocking = blocking;
+    }
+
+    static Unit getCurrentUnitGettingBlocker() {
+        return currentUnitGettingBlocker;
+    }
+
+    static void setCurrentUnitGettingBlocker(Unit currentUnitGettingBlocker) {
+        DataProviderBattle.currentUnitGettingBlocker = currentUnitGettingBlocker;
     }
 }
