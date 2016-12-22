@@ -12,7 +12,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50sp"
         android:layout_weight="1"
         android:background="#24beaf">
 
@@ -26,19 +26,25 @@
             android:background="@android:color/holo_blue_light"
             android:visibility="invisible" />
 
-        <TextView
-            android:text="Attacking Army"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/attArmyMain"
             android:layout_weight="1"
-            android:background="#24beaf"
-            android:textSize="20sp"
-            android:textColor="#000"
-            android:rotation="180"
-            android:gravity="left|center"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp" />
+            android:rotation="180">
+
+            <TextView
+                android:text="Attacking Army:\n"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/attArmyMain"
+                android:layout_weight="1"
+                android:background="#24beaf"
+                android:textSize="20sp"
+                android:textColor="#000"
+                android:gravity="left|center"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp" />
+        </ScrollView>
 
     </LinearLayout>
 
@@ -113,21 +119,27 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50sp"
         android:layout_weight="1"
         android:background="#000">
 
-        <TextView
-            android:text="Defending Army"
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/defArmyMain"
-            android:layout_weight="1"
-            android:gravity="left|center"
-            android:textColor="#24beaf"
-            android:textSize="20sp"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp" />
+            android:layout_weight="1">
+
+            <TextView
+                android:text="Defending Army\n"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/defArmyMain"
+                android:layout_weight="1"
+                android:gravity="left|center"
+                android:textColor="#24beaf"
+                android:textSize="20sp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp" />
+        </ScrollView>
 
         <Button
             android:text="Continue"
