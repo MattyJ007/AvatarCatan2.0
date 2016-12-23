@@ -38,8 +38,11 @@ public class AdapterBattleGround extends ArrayAdapter<Unit>{
             nameText.setText(unit.getName());
 
             String numAttacks = "";
-            for (int i = 0; i<unit.getNumberOfAttacks(); i++){
+            for (int i = 0; i<(unit.getNumberOfAttacks()-unit.getNumberOfAttacksUsed()); i++){
                 numAttacks += "●";
+            }
+            for (int j = 0; j<(unit.getNumberOfAttacksUsed());j++){
+                numAttacks += "-";
             }
             TextView numAttacksText = (TextView) convertView.findViewById(R.id.gridattack);
             numAttacksText.setText(numAttacks);

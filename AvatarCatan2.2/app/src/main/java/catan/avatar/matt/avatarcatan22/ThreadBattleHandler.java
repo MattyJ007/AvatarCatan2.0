@@ -233,6 +233,7 @@ class ThreadBattleHandler {
             if (isAttackerTurn()) {
                 if ((getUnitsFinishedAttacking().size() + getDeadAttackingUnits().size()) == DataProviderArmies.getArmies().getAttackingTeamUnits().size()) {
                     setAttackerTurn(false);
+                    resetUnitsAttacks();
                     ControllerBattleGround.getAttInfoText().clearComposingText();
                     ControllerBattleGround.getCenterText().setRotation(0);
                     getUnitsFinishedAttacking().clear();
@@ -241,14 +242,31 @@ class ThreadBattleHandler {
             } else {
                 if ((getUnitsFinishedAttacking().size() + getDeadDefendingUnits().size()) == DataProviderArmies.getArmies().getDefendingTeamUnits().size()) {
                     setAttackerTurn(true);
+                    resetUnitsAttacks();
                     ControllerBattleGround.getDefInfoText().clearComposingText();
                     ControllerBattleGround.getCenterText().setRotation(180);
                     getUnitsFinishedAttacking().clear();
                 }
             }
+
             defending.clear();
-            getCurrentAttackingUnit().setNumberOfAttacksUsed((byte) 0);
+//            getCurrentAttackingUnit().setNumberOfAttacksUsed((byte) 0);
             setCurrentAttackingUnit(null);
+        }
+    }
+
+    private static void resetUnitsAttacks() {
+        if (isAttackerTurn()){
+            for (Unit unit: DataProviderArmies.getArmies().getAttackingTeamUnits()) {
+                if(!getDeadAttackingUnits().contains(unit)){
+                    unit.setNumberOfAttacksUsed((byte) 0);
+                }
+            }
+        }
+        else{
+            for(Unit unit: DataProviderArmies.getArmies().getDefendingTeamUnits()){
+                unit.setNumberOfAttacksUsed((byte) 0);
+            }
         }
     }
 }
