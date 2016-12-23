@@ -52,10 +52,6 @@ class DataProviderBattle {
         return unitsFinishedAttacking;
     }
 
-    static void setUnitsFinishedAttacking(ArrayList<Unit> unitsFinishedAttacking) {
-        DataProviderBattle.unitsFinishedAttacking = unitsFinishedAttacking;
-    }
-
     static ArrayList<Unit> getDeadAttackingUnits() {
         return deadAttackingUnits;
     }

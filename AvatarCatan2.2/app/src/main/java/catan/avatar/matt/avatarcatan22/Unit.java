@@ -3,15 +3,15 @@ package catan.avatar.matt.avatarcatan22;
 import android.view.View;
 
 public class Unit implements Cloneable{
-    String name,image, minRequirement, bendingType;
-    byte accuracy, attack6,attack20,evasion,defense,intelligence,numberOfAttacks, numberOfAttacksUsed,type, hero, gold, life;
+    String name,image, minRequirement, bendingType, ability;
+    byte damage, accuracy,evasion,defense,intelligence,numberOfAttacks, numberOfAttacksUsed,type, hero, gold, life;
     View view;
 
-    public Unit(String name, String image, byte type, String minRequirement, byte attack6,byte attack20,byte numberOfAttacks, byte defense,byte evasion,byte intelligence,byte life,byte gold,byte hero, String bendingType) {
+    public Unit(String name, String image, byte type, String minRequirement, byte damage, byte accuracy, byte numberOfAttacks, byte defense, byte evasion, byte intelligence, byte life, byte gold, byte hero, String bendingType, String ability) {
         this.name = name;
         this.image = image;
-        this.attack6 = attack6;
-        this.attack20 = attack20;
+        this.damage = damage;
+        this.accuracy = accuracy;
         this.evasion = evasion;
         this.defense = defense;
         this.life = life;
@@ -20,15 +20,16 @@ public class Unit implements Cloneable{
         this.type = type;
         this.hero = hero;
         this.gold = gold;
+        this.ability = ability;
         this.minRequirement = minRequirement;
         this.bendingType = bendingType;
     }
 
-    public Unit(String name, String image,byte type, byte attack6, byte attack20, byte numberOfAttacks,byte defense,byte evasion, byte intelligence, byte life, byte hero ) {
+    public Unit(String name, String image, byte type, byte damage, byte accuracy, byte numberOfAttacks, byte defense, byte evasion, byte intelligence, byte life, byte hero ) {
         this.name = name;
         this.image = image;
-        this.attack6 = attack6;
-        this.attack20 = attack20;
+        this.damage = damage;
+        this.accuracy = accuracy;
         this.evasion = evasion;
         this.defense = defense;
         this.life = life;
@@ -40,28 +41,28 @@ public class Unit implements Cloneable{
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
-        return new Unit(this.name,this.image,this.type,this.attack6,this.attack20,this.numberOfAttacks, this.defense,this.evasion,this.intelligence,this.life,this.hero);
+        return new Unit(this.name,this.image,this.type,this.damage,this.accuracy,this.numberOfAttacks, this.defense,this.evasion,this.intelligence,this.life,this.hero);
     }
 
-    public Unit(){
-        name = "Default Unit";
-        attack6 = 1;
-        attack20 = 0;
-        evasion = 0;
-        defense = 0;
-        life = 5;
-        intelligence = 0;
-        numberOfAttacks = 1;
-        type = 0;
-        image = "";
+//    public Unit(){
+//        name = "Default Unit";
+//        attack = 1;
+//        accuracy = 0;
+//        evasion = 0;
+//        defense = 0;
+//        life = 5;
+//        intelligence = 0;
+//        numberOfAttacks = 1;
+//        type = 0;
+//        image = "";
+//    }
+
+    public byte getDamage() {
+        return damage;
     }
 
-    public byte getAttack6() {
-        return attack6;
-    }
-
-    public byte getAttack20() {
-        return attack20;
+    public byte getAccuracy() {
+        return accuracy;
     }
 
     public String getName() {
@@ -109,7 +110,7 @@ public class Unit implements Cloneable{
     }
 
     public String getStats(){
-        return ("Attack D6: " + attack6 + "\nAttack D20: " + attack20 + "\nDefense: "+defense + "\nEvasion: "+evasion+"\nLife: "+life+"\nIntelligence: "+intelligence+"\nNumber of Attacks: "+numberOfAttacks+"\nBending: " + bendingType + "\n\nMinimum Requirement: "+ minRequirement +"\n");
+        return ("Damage: " + damage + "\nAccuracy: " + accuracy + "\nDefense: "+defense + "\nEvasion: "+evasion+"\nLife: "+life+"\nIntelligence: "+intelligence+"\nNumber of Attacks: "+numberOfAttacks+"\nBending: " + bendingType + "\nAbility: "+ ability+ "\n\nMinimum Requirement: "+ minRequirement +"\n");
 
     }
 
@@ -119,5 +120,13 @@ public class Unit implements Cloneable{
 
     public void setView(View view) {
         this.view = view;
+    }
+
+    public byte getNumberOfAttacksUsed() {
+        return numberOfAttacksUsed;
+    }
+
+    public void setNumberOfAttacksUsed(byte numberOfAttacksUsed) {
+        this.numberOfAttacksUsed = numberOfAttacksUsed;
     }
 }
