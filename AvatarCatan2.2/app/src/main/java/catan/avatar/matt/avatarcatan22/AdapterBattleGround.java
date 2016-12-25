@@ -47,7 +47,31 @@ public class AdapterBattleGround extends ArrayAdapter<Unit>{
             TextView numAttacksText = (TextView) convertView.findViewById(R.id.gridattack);
             numAttacksText.setText(numAttacks);
 
-            TextView status = (TextView) convertView.findViewById(R.id.status);
+            TextView statusText = (TextView) convertView.findViewById(R.id.status);
+            String statuses = "";
+            for (byte status: unit.getStatus()){
+                if(status == (byte) 1){
+                    continue;
+                }
+                if (status == (byte) 2){
+                    statuses += "[stunned]";
+                }
+                if (status == (byte) 3){
+                    statuses += "[paralysed]";
+                }
+                if (status == (byte) 4){
+                    statuses += "[no bending]";
+                }
+                if (status == (byte) 5){
+                    statuses += "[blocked chi]";
+                }
+            }
+            statusText.setTextColor(Color.parseColor("#FF9C0AF7"));
+            if (unit.getStatus().contains((byte) 0)){
+                statuses = "[DEAD]";
+                statusText.setTextColor(Color.parseColor("#FFFF0000"));
+            }
+            statusText.setText(statuses);
 
             TextView lifeText = (TextView) convertView.findViewById(R.id.gridlife);
             lifeText.setText(String.valueOf(unit.getLife()));
@@ -57,7 +81,6 @@ public class AdapterBattleGround extends ArrayAdapter<Unit>{
             if (unit.getLife()<1){
                 lifeText.setTextColor(Color.parseColor("#FFFF0000"));
                 numAttacksText.setText("-");
-                status.setText(R.string.dead);
             }
 
             unit.setView(convertView);

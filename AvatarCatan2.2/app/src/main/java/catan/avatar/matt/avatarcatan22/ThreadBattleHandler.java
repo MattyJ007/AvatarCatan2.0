@@ -27,9 +27,12 @@ class ThreadBattleHandler {
 
     private static void selectUnit(Unit unit, int team) {
         if (getDeadDefendingUnits().contains(unit) || getDeadAttackingUnits().contains(unit)) {
-            ControllerBattleGround.getOffensiveTeamText().setText(unit.getName() + " is Dead\n");
-            ControllerBattleGround.getDefensiveTeamText().setText(unit.getName() + " is Dead\n");
+            String dead = unit.getName() + " is Dead";
+            ControllerBattleGround.getOffensiveTeamText().setText(dead);
+            ControllerBattleGround.getDefensiveTeamText().setText(dead);
         } else if (getCurrentAttackingUnit() == null) {
+            String isAtt = unit.getName() + " is attacking";
+            String alreadyAttd = unit.getName() + " has already attacked";
             //**Attackers turn
             if (isAttackerTurn()) {
                 //**Check which teams unit was selected
@@ -37,11 +40,11 @@ class ThreadBattleHandler {
                     if (!getUnitsFinishedAttacking().contains(unit)) {
                         //** Selected Unit is the now attacking
                         setCurrentAttackingUnit(unit);
-                        ControllerBattleGround.getDefInfoText().setText(unit.getName() + " is attacking\n");
+                        ControllerBattleGround.getDefInfoText().setText(isAtt);
                         ControllerBattleGround.getOffensiveTeamText().setText("Choose unit to attack:\n");
                         unit.getView().setBackgroundColor(Color.parseColor("#bafff8"));
                     } else {
-                        ControllerBattleGround.getOffensiveTeamText().setText(unit.getName() + " has already attacked\n");
+                        ControllerBattleGround.getOffensiveTeamText().setText(alreadyAttd);
                     }
                 } else {
                     ControllerBattleGround.getDefensiveTeamText().setText("Not your turn\n");
@@ -53,11 +56,11 @@ class ThreadBattleHandler {
                     if (!getUnitsFinishedAttacking().contains(unit)) {
                         //** Selected Unit is the now attacking
                         setCurrentAttackingUnit(unit);
-                        ControllerBattleGround.getAttInfoText().setText(unit.getName() + " is attacking\n");
+                        ControllerBattleGround.getAttInfoText().setText(isAtt);
                         ControllerBattleGround.getDefensiveTeamText().setText("Choose unit to attack:\n");
                         unit.getView().setBackgroundColor(Color.parseColor("#bafff8"));
                     } else {
-                        ControllerBattleGround.getDefensiveTeamText().setText(unit.getName() + " has already attacked\n");
+                        ControllerBattleGround.getDefensiveTeamText().setText(alreadyAttd);
                     }
                 } else {
                     ControllerBattleGround.getOffensiveTeamText().setText("Not your turn\n");
@@ -68,10 +71,11 @@ class ThreadBattleHandler {
             if (getCurrentAttackingUnit() == unit) {
                 setCurrentAttackingUnit(null);
                 unit.getView().setBackgroundColor(Color.parseColor("#ffffff"));
+                String deselect = unit.getName() + " deselected";
                 if (team == 0) {
-                    ControllerBattleGround.getDefensiveTeamText().setText(unit.getName() + " deselected\n");
+                    ControllerBattleGround.getDefensiveTeamText().setText(deselect);
                 } else {
-                    ControllerBattleGround.getOffensiveTeamText().setText(unit.getName() + " deselected\n");
+                    ControllerBattleGround.getOffensiveTeamText().setText(deselect);
 
                 }
                 //**removes any units that may have been chosen to be attacked
@@ -80,13 +84,16 @@ class ThreadBattleHandler {
             //**Offensive team turn - therefore need to select unit from defending side to be attacked
             else if (isAttackerTurn()) {
                 if (team == 0) {
-                    getCurrentAttackingUnit().setNumberOfAttacksUsed((byte)(getCurrentAttackingUnit().getNumberOfAttacksUsed()+ 1));
-                    if(!getCurrentDefendingUnits().contains(unit)){
+                    getCurrentAttackingUnit().setNumberOfAttacksUsed((byte) (getCurrentAttackingUnit().getNumberOfAttacksUsed() + 1));
+                    if (!getCurrentDefendingUnits().contains(unit)) {
                         getCurrentDefendingUnits().add(unit);
                     }
                     unit.getView().setBackgroundColor(Color.parseColor("#FFFFE2DB"));
                     if (getCurrentAttackingUnit().getNumberOfAttacksUsed() == getCurrentAttackingUnit().getNumberOfAttacks()) {
+                        getUnitsFinishedAttacking().add(getCurrentAttackingUnit());
                         attack(getCurrentAttackingUnit(), getCurrentDefendingUnits(), false);
+                        ControllerBattleGround.getDefensiveTeamText().clearComposingText();
+                        ControllerBattleGround.getOffensiveTeamText().clearComposingText();
                     }
                 } else {
                     ControllerBattleGround.getOffensiveTeamText().setText(R.string.cant_attack_ownTeam);
@@ -95,13 +102,16 @@ class ThreadBattleHandler {
             //**Defender team turn
             else {
                 if (team == 1) {
-                    getCurrentAttackingUnit().setNumberOfAttacksUsed((byte)(getCurrentAttackingUnit().getNumberOfAttacksUsed()+ 1));
-                    if(!getCurrentDefendingUnits().contains(unit)){
+                    getCurrentAttackingUnit().setNumberOfAttacksUsed((byte) (getCurrentAttackingUnit().getNumberOfAttacksUsed() + 1));
+                    if (!getCurrentDefendingUnits().contains(unit)) {
                         getCurrentDefendingUnits().add(unit);
                     }
                     unit.getView().setBackgroundColor(Color.parseColor("#FFFFE2DB"));
                     if (getCurrentAttackingUnit().getNumberOfAttacksUsed() == getCurrentAttackingUnit().getNumberOfAttacks()) {
+                        getUnitsFinishedAttacking().add(getCurrentAttackingUnit());
                         attack(getCurrentAttackingUnit(), getCurrentDefendingUnits(), false);
+                        ControllerBattleGround.getDefensiveTeamText().clearComposingText();
+                        ControllerBattleGround.getOffensiveTeamText().clearComposingText();
                     }
                 } else {
                     ControllerBattleGround.getDefensiveTeamText().setText(R.string.cant_attack_ownTeam);
@@ -115,14 +125,14 @@ class ThreadBattleHandler {
     private static float rollDieForAttack(Unit currentAttackingUnit) {
         Random rand = new Random();
         float totalAttack = 0;
-        float attackPerUnit;
+        float damagePerUnit;
         currentAttackingUnit.getDamage();
         totalAttack += rand.nextInt((int) (currentAttackingUnit.getDamage() * 0.4)) + (currentAttackingUnit.getDamage() * 0.8);
-        attackPerUnit = totalAttack / (float) getCurrentDefendingUnits().size();
-        return attackPerUnit;
+        damagePerUnit = totalAttack / (float) getCurrentDefendingUnits().size();
+        return damagePerUnit;
     }
 
-    private static void applyDamage(Unit defender, float attack, boolean retaliation, Unit attacker) {
+    private static void applyDamage(Unit defender, float damage, boolean retaliation, Unit attacker) {
         Random rand = new Random();
         int settlementEvasionBonus = 0;
 
@@ -133,7 +143,19 @@ class ThreadBattleHandler {
         if (team == 1 && retaliation) {
             settlementEvasionBonus = DataProviderSettlementDefence.getSettlementEvasionBonus();
         }
-        int evasion = (int) ((1.0- ((float)attacker.getAccuracy()/(attacker.getAccuracy()+defender.getEvasion()))) * 100);
+        float accuracy = attacker.getAccuracy();
+        float defEvasion = defender.getEvasion();
+        for (byte status : attacker.getStatus()) {
+            if (status == (byte) 5) {
+                accuracy *= 0.8;
+            }
+        }
+        for (byte status : defender.getStatus()) {
+            if (status == (byte) 2 || status == (byte) 3) {
+                defEvasion = 1;
+            }
+        }
+        int evasion = (int) ((1.0 - (accuracy / (accuracy + defEvasion))) * 100);
 //        System.out.println(defender.getName() + " Evasion: " + evasion);
         if (evasion > 60) {
             evasion = 60;
@@ -150,20 +172,45 @@ class ThreadBattleHandler {
                 attack(defender, attackingUnit, true);
 
             }
-            if (!getUnitsFinishedAttacking().contains(getCurrentAttackingUnit())) {
-                getUnitsFinishedAttacking().add(getCurrentAttackingUnit());
-            }
-
         } else {
-            byte actualDamge = (byte) Math.round(((float) (1 - (defender.getDefense() / 100.0)) * attack));
-//            System.out.println("Attack: " + attack + "\nActual Damage: " + actualDamge);
-            if (actualDamge == 0) {
-                actualDamge = (byte) 1;
+            byte actualDamage;
+            float defense = defender.getDefense();
+            for (byte status : attacker.getStatus()) {
+                if (status == (byte) 4) {
+                    damage *= 0.25;
+                }
+                if (status == (byte) 5) {
+                    damage *= 0.5;
+                }
             }
-            defender.setLife((byte) (defender.getLife() - actualDamge));
-            ControllerBattleGround.getOffensiveTeamText().append(attacker.getName() + " hits " + defender.getName() + " for " + actualDamge + "\n");
-            ControllerBattleGround.getDefensiveTeamText().append(attacker.getName() + " hits " + defender.getName() + " for " + actualDamge + "\n");
+            if (defender.getStatus().contains((byte) 2)) {
+                defense -= 25;
+            }
+            actualDamage = (byte) Math.round(((float) (1 - (defense / 100.0)) * damage));
+            if (attacker.getAbility().equals("Critical Hit")) {
+                if (rand.nextInt(20) + 1 == 20) {
+                    String critHit = "Critical hit by " + attacker.getName();
+                    ControllerBattleGround.getDefInfoText().setText(critHit);
+                    ControllerBattleGround.getAttInfoText().setText(critHit);
+                    actualDamage *= 2.5;
+                }
+            } else if (defender.getAbility().equals("Redirect Lightning") && attacker.getType() == (byte) 2) {
+                String redirectLightning = defender.getName() + " redirects Lightning";
+                ControllerBattleGround.getDefInfoText().setText(redirectLightning);
+                ControllerBattleGround.getAttInfoText().setText(redirectLightning);
+
+                actualDamage /= 2;
+            }
+            if (actualDamage == 0) {
+                actualDamage = (byte) 1;
+            }
+            defender.setLife((byte) (defender.getLife() - actualDamage));
+            ControllerBattleGround.getOffensiveTeamText().append(attacker.getName() + " hits " + defender.getName() + " for " + actualDamage + "\n");
+            ControllerBattleGround.getDefensiveTeamText().append(attacker.getName() + " hits " + defender.getName() + " for " + actualDamage + "\n");
+            implementAbility(attacker, defender);
             if (defender.getLife() < 1) {
+                defender.getStatus().clear();
+                defender.getStatus().add((byte) 0);
                 if (!retaliation) {
                     if (isAttackerTurn()) {
                         if (!getDeadDefendingUnits().contains(defender)) {
@@ -177,11 +224,6 @@ class ThreadBattleHandler {
 //                            System.out.println(defender.getName() + " attacker dead.");
 
                         }
-                    }
-                    if (!getUnitsFinishedAttacking().contains(getCurrentAttackingUnit())) {
-                        getUnitsFinishedAttacking().add(getCurrentAttackingUnit());
-//                        System.out.println(getCurrentAttackingUnit().getName() + " finished attacking.");
-
                     }
                 } else {
                     if (!isAttackerTurn()) {
@@ -197,31 +239,88 @@ class ThreadBattleHandler {
 
                         }
                     }
+                    getUnitsFinishedAttacking().remove(defender);
                 }
             } else {
                 if (!retaliation) {
                     ArrayList<Unit> attackingUnit = new ArrayList<>();
                     attackingUnit.add(getCurrentAttackingUnit());
                     attack(defender, attackingUnit, true);
-                } else {
-                    if (!getUnitsFinishedAttacking().contains(getCurrentAttackingUnit())) {
-                        getUnitsFinishedAttacking().add(getCurrentAttackingUnit());
-//                        System.out.println(getCurrentAttackingUnit().getName() + " finished attacking.");
-                    }
                 }
             }
         }
     }
 
+    private static void implementAbility(Unit attacker, Unit defender) {
+        Random rand = new Random();
+        int statusChange = rand.nextInt(100) + 1;
+        switch (attacker.getAbility()) {
+            case "none":
+            case "Redirect Lightning":
+            case "Critical Hit":
+
+                break;
+            case "Stun":
+                if (statusChange >= 90) {
+                    if (!defender.getStatus().contains((byte) 2)) {
+                        defender.getStatus().add((byte) 2);
+                    }
+                    String stun = defender.getName() + " is Stunned";
+                    ControllerBattleGround.getDefInfoText().setText(stun);
+                    ControllerBattleGround.getAttInfoText().setText(stun);
+                }
+                break;
+            case "Paralyse":
+                if (statusChange >= 70) {
+                    if (!defender.getStatus().contains((byte) 3)) {
+                        defender.getStatus().add((byte) 3);
+                    }
+                    String paralysed = defender.getName() + " is Paralysed";
+                    ControllerBattleGround.getDefInfoText().setText(paralysed);
+                    ControllerBattleGround.getAttInfoText().setText(paralysed);
+                }
+                break;
+            case "Take Away Bending":
+                if (defender.getType() != 0 || defender.getType() != 12 || defender.getType() != 13 || defender.getType() != 14) {
+                    if (statusChange >= 60) {
+                        defender.getStatus().add((byte) 4);
+                        String noBending = defender.getName() + " has no Bending";
+                        ControllerBattleGround.getDefInfoText().setText(noBending);
+                        ControllerBattleGround.getAttInfoText().setText(noBending);
+                    }
+                }
+                break;
+            case "Block Chi":
+                if (defender.getType() != 14) {
+                    if (statusChange >= 70) {
+                        defender.getStatus().add((byte) 5);
+                        String chiBlock = defender.getName() + "'s Chi is blocked";
+                        if (ControllerBattleGround.getDefInfoText().getText().equals(defender.getName() + " is Stunned\n")) {
+                            ControllerBattleGround.getDefInfoText().append(chiBlock);
+                            ControllerBattleGround.getAttInfoText().append(chiBlock);
+                        } else {
+                            ControllerBattleGround.getDefInfoText().setText(chiBlock);
+                            ControllerBattleGround.getAttInfoText().setText(chiBlock);
+                        }
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+
+
+    }
+
     private static void attack(Unit attacking, ArrayList<Unit> defending, boolean retaliation) {
-        float attackPerUnit = rollDieForAttack(attacking);
+        float damagePerUnit = rollDieForAttack(attacking);
         for (Unit defender : defending) {
             if (retaliation) {
-                float retaliateAttack = rollDieForAttack(defender);
-                attackPerUnit = retaliateAttack * defender.getNumberOfAttacks();
-                applyDamage(getCurrentAttackingUnit(), retaliateAttack, retaliation, attacking);
+                float retaliateDamage = rollDieForAttack(defender);
+                damagePerUnit = retaliateDamage * defender.getNumberOfAttacks();
+                applyDamage(getCurrentAttackingUnit(), retaliateDamage, retaliation, attacking);
             } else {
-                applyDamage(defender, attackPerUnit, retaliation, attacking);
+                applyDamage(defender, damagePerUnit, retaliation, attacking);
             }
         }
 
@@ -235,6 +334,7 @@ class ThreadBattleHandler {
                     setAttackerTurn(false);
                     resetUnitsAttacks();
                     ControllerBattleGround.getAttInfoText().clearComposingText();
+                    ControllerBattleGround.getDefInfoText().clearComposingText();
                     ControllerBattleGround.getCenterText().setRotation(0);
                     getUnitsFinishedAttacking().clear();
 
@@ -243,12 +343,12 @@ class ThreadBattleHandler {
                 if ((getUnitsFinishedAttacking().size() + getDeadDefendingUnits().size()) == DataProviderArmies.getArmies().getDefendingTeamUnits().size()) {
                     setAttackerTurn(true);
                     resetUnitsAttacks();
+                    ControllerBattleGround.getAttInfoText().clearComposingText();
                     ControllerBattleGround.getDefInfoText().clearComposingText();
                     ControllerBattleGround.getCenterText().setRotation(180);
                     getUnitsFinishedAttacking().clear();
                 }
             }
-
             defending.clear();
 //            getCurrentAttackingUnit().setNumberOfAttacksUsed((byte) 0);
             setCurrentAttackingUnit(null);
@@ -256,15 +356,14 @@ class ThreadBattleHandler {
     }
 
     private static void resetUnitsAttacks() {
-        if (isAttackerTurn()){
-            for (Unit unit: DataProviderArmies.getArmies().getAttackingTeamUnits()) {
-                if(!getDeadAttackingUnits().contains(unit)){
+        if (isAttackerTurn()) {
+            for (Unit unit : DataProviderArmies.getArmies().getAttackingTeamUnits()) {
+                if (!getDeadAttackingUnits().contains(unit)) {
                     unit.setNumberOfAttacksUsed((byte) 0);
                 }
             }
-        }
-        else{
-            for(Unit unit: DataProviderArmies.getArmies().getDefendingTeamUnits()){
+        } else {
+            for (Unit unit : DataProviderArmies.getArmies().getDefendingTeamUnits()) {
                 unit.setNumberOfAttacksUsed((byte) 0);
             }
         }
