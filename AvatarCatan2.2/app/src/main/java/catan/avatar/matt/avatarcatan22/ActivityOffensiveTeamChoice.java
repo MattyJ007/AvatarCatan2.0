@@ -34,7 +34,6 @@ public class ActivityOffensiveTeamChoice extends AppCompatActivity {
         final ListView offensiveHeroes = (ListView) findViewById(R.id.listView2);
         final AdapterAttackingTeamChoice adapter1 = new AdapterAttackingTeamChoice(this,R.layout.list_unit, DataProviderArmies.getArmies().getAttackingTeamUnits());
         offensiveHeroes.setAdapter(adapter1);
-        System.out.println(unitList.size());
         ListView chooseOffensiveHeroes = (ListView) findViewById(R.id.listView);
         AdapterAttackingTeamChoice adapter = new AdapterAttackingTeamChoice(this,R.layout.list_unit, unitList);
         chooseOffensiveHeroes.setAdapter(adapter);

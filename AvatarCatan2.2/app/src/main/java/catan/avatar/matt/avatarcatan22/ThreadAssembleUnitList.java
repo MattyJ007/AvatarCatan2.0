@@ -1,25 +1,23 @@
 package catan.avatar.matt.avatarcatan22;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class ThreadAssembleUnitList extends Thread{
-    private static HashMap<String, List<Unit>> unitHashMap;
+public class ThreadAssembleUnitList extends Thread {
     private static List<Unit> mainUnitsList;
 
-    public ThreadAssembleUnitList(List<Unit> mainUnitsList, HashMap<String, List<Unit>> unitHashMap){
+    public ThreadAssembleUnitList(List<Unit> mainUnitsList) {
         ThreadAssembleUnitList.mainUnitsList = mainUnitsList;
-        ThreadAssembleUnitList.unitHashMap = unitHashMap;
     }
+
     @Override
     public void run() {
-        synchronized (mainUnitsList){
-            synchronized (unitHashMap) {
-                setUnitsLists(unitHashMap, mainUnitsList);
-            }
+        synchronized (mainUnitsList) {
+            setUnitsLists(
+                    mainUnitsList);
         }
     }
+
     private static String[] units = {"Fire Nation Guy,fng,8,Town (Earth),5,4,1,0,5,0,8,2,1,Taunt",
             "Smellerbee,sme,0,Village & Not Fire Nation,7,9,1,5,8,6,15,5,1,Taunt",
             "PipSqueak,pip,0,Village & Not Fire Nation,10,8,1,10,8,5,20,6,1,none",
@@ -86,58 +84,56 @@ public class ThreadAssembleUnitList extends Thread{
             "Avatar Kyoshi,kyo,15,3 Settlements (Air + Fire + Water) & (Ba Sing Se or Omashu),27,20,3,30,13,7,35,37,1,none",
 
     };
-    private static void setUnitsLists(HashMap<String, List<Unit>> unitHashMap, List<Unit>mainUnitsList){
-        synchronized (mainUnitsList){
-            synchronized (unitHashMap) {
-                HashMap<Byte, String> bendingtypes = new HashMap<>();
-                {
-                    bendingtypes.put((byte) 0, "No Bending - Melee");
-                    bendingtypes.put((byte) 1, "Fire");
-                    bendingtypes.put((byte) 2, "Fire & Lightning");
-                    bendingtypes.put((byte) 3, "Combustion");
-                    bendingtypes.put((byte) 4, "Water");
-                    bendingtypes.put((byte) 5, "Water & Ice");
-                    bendingtypes.put((byte) 6, "Water, Ice & Blood");
-                    bendingtypes.put((byte) 7, "Psychic Blood");
-                    bendingtypes.put((byte) 8, "Earth");
-                    bendingtypes.put((byte) 9, "Earth & Metal");
-                    bendingtypes.put((byte) 10, "Earth & Lava");
-                    bendingtypes.put((byte) 11, "Air");
-                    bendingtypes.put((byte) 12, "No Bending - Ranged");
-                    bendingtypes.put((byte) 13, "Chi Blocker");
-                    bendingtypes.put((byte) 14, "Spirit");
-                    bendingtypes.put((byte) 15, "All Elements");
 
-                }
-                String name, image, minRequirement, bengingType, ability;
-                String[] unitStats;
-                List<Unit> statsList;
-                byte attack, accuracy, gold, hero, evasion, defense, life, intelligence, numberOfAttacks, type;
-                Unit u;
-                for (String unit1 : units) {
-                    statsList = new ArrayList<>();
-                    unitStats = unit1.split(",");
-                    name = unitStats[0];
-                    image = unitStats[1];
-                    type = Byte.parseByte(unitStats[2]);
-                    bengingType = bendingtypes.get(type);
-                    minRequirement = unitStats[3];
-                    attack = Byte.parseByte(unitStats[4]);
-                    accuracy = Byte.parseByte(unitStats[5]);
-                    numberOfAttacks = Byte.parseByte(unitStats[6]);
-                    defense = Byte.parseByte(unitStats[7]);
-                    evasion = Byte.parseByte(unitStats[8]);
-                    intelligence = Byte.parseByte(unitStats[9]);
-                    life = Byte.parseByte(unitStats[10]);
-                    gold = Byte.parseByte(unitStats[11]);
-                    hero = Byte.parseByte(unitStats[12]);
-                    ability = unitStats[13];
+    private static void setUnitsLists(
+            List<Unit> mainUnitsList) {
+        synchronized (mainUnitsList) {
+            HashMap<Byte, String> bendingtypes = new HashMap<>();
 
-                    u = new Unit(name, image, type, minRequirement, attack, accuracy, numberOfAttacks, defense, evasion, intelligence, life, gold, hero, bengingType, ability);
-                    statsList.add(u);
-                    mainUnitsList.add(u);
-                    unitHashMap.put(name, statsList);
-                }
+            {
+                bendingtypes.put((byte) 0, "No Bending - Melee");
+                bendingtypes.put((byte) 1, "Fire");
+                bendingtypes.put((byte) 2, "Fire & Lightning");
+                bendingtypes.put((byte) 3, "Combustion");
+                bendingtypes.put((byte) 4, "Water");
+                bendingtypes.put((byte) 5, "Water & Ice");
+                bendingtypes.put((byte) 6, "Water, Ice & Blood");
+                bendingtypes.put((byte) 7, "Psychic Blood");
+                bendingtypes.put((byte) 8, "Earth");
+                bendingtypes.put((byte) 9, "Earth & Metal");
+                bendingtypes.put((byte) 10, "Earth & Lava");
+                bendingtypes.put((byte) 11, "Air");
+                bendingtypes.put((byte) 12, "No Bending - Ranged");
+                bendingtypes.put((byte) 13, "Chi Blocker");
+                bendingtypes.put((byte) 14, "Spirit");
+                bendingtypes.put((byte) 15, "All Elements");
+
+            }
+
+            String name, image, minRequirement, bendingTypes, ability;
+            String[] unitStats;
+            byte attack, accuracy, gold, hero, evasion, defense, life, intelligence, numberOfAttacks, type;
+            Unit u;
+            for (String unit1 : units) {
+                unitStats = unit1.split(",");
+                name = unitStats[0];
+                image = unitStats[1];
+                type = Byte.parseByte(unitStats[2]);
+                bendingTypes = bendingtypes.get(type);
+                minRequirement = unitStats[3];
+                attack = Byte.parseByte(unitStats[4]);
+                accuracy = Byte.parseByte(unitStats[5]);
+                numberOfAttacks = Byte.parseByte(unitStats[6]);
+                defense = Byte.parseByte(unitStats[7]);
+                evasion = Byte.parseByte(unitStats[8]);
+                intelligence = Byte.parseByte(unitStats[9]);
+                life = Byte.parseByte(unitStats[10]);
+                gold = Byte.parseByte(unitStats[11]);
+                hero = Byte.parseByte(unitStats[12]);
+                ability = unitStats[13];
+
+                u = new Unit(name, image, type, minRequirement, attack, accuracy, numberOfAttacks, defense, evasion, intelligence, life, gold, hero, bendingTypes, ability);
+                mainUnitsList.add(u);
             }
         }
     }

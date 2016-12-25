@@ -9,44 +9,39 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.ls.LSException;
+
 import java.util.HashMap;
 import java.util.List;
 
 public class AdapterUnitExpandList extends BaseExpandableListAdapter {
     private Context ctx;
-    private HashMap<String, List<Unit>> unitsList;
-    private List<String> statsList;
-
-    public AdapterUnitExpandList(Context ctx, HashMap<String, List<Unit>> unitsList, List<String> statsList) {
+    private List<Unit> listOfHeroes;
+    public AdapterUnitExpandList(Context ctx,
+                                 List<Unit> listOfHeroes
+    ) {
         this.ctx = ctx;
-        this.unitsList = unitsList;
-        this.statsList = statsList;
+        this.listOfHeroes = listOfHeroes;
     }
 
     @Override
     public int getGroupCount() {
-        return statsList.size();
+        return listOfHeroes.size();
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return unitsList.get(statsList.get(groupPosition)).size();
+        return 1;
     }
 
     @Override
     public Object getGroup(int groupPosition) {
-        return statsList.get(groupPosition);
+        return listOfHeroes.get(groupPosition).getName();
     }
 
     @Override
     public Object getChild(int parent, int child) {
-        return unitsList.get(statsList.get(parent)).get(0).getStats();
-    }
-    public Byte getChildGold(int parent) {
-        return unitsList.get(statsList.get(parent)).get(0).getGold();
-    }
-    public String getChildPic(int parent) {
-        return unitsList.get(statsList.get(parent)).get(0).getImage();
+        return listOfHeroes.get(parent).getStats();
     }
 
     @Override
@@ -67,8 +62,8 @@ public class AdapterUnitExpandList extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertview, ViewGroup parentview) {
         String group_title = (String) getGroup(groupPosition);
-        String goldValue = (getChildGold(groupPosition) + " Gold");
-        String pic = getChildPic(groupPosition);
+        String goldValue = (listOfHeroes.get(groupPosition).getGold() + " Gold");
+        String pic = listOfHeroes.get(groupPosition).getImage();
 
         if(convertview == null)
         {
@@ -89,14 +84,14 @@ public class AdapterUnitExpandList extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int parent, int child, boolean isLastChild, View convertview, ViewGroup parentView) {
-        String child_title =  (String) getChild(parent, child);
+        String unitStats =  (String) getChild(parent, child);
         if(convertview == null)
         {
             LayoutInflater inflator = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertview = inflator.inflate(R.layout.expanded_list_child, parentView,false);
         }
         TextView child_textview = (TextView) convertview.findViewById(R.id.textView9);
-        child_textview.setText(child_title);
+        child_textview.setText(unitStats);
         return convertview;
     }
 

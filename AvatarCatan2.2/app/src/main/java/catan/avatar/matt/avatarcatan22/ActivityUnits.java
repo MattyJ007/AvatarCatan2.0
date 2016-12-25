@@ -10,8 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ActivityUnits extends AppCompatActivity {
-    HashMap<String, List<Unit>> unitlist;
-    List<String> statList;
+    List<Unit>listOfHeroes;
     ExpandableListView exp_list;
     AdapterUnitExpandList adapter;
     @Override
@@ -19,11 +18,9 @@ public class ActivityUnits extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_units);
         exp_list = (ExpandableListView) findViewById(R.id.expandableListView);
-        unitlist = DataProviderUnitList.getUnitHashMap();
-        statList = new ArrayList<>(unitlist.keySet());
-        adapter = new AdapterUnitExpandList(this, unitlist, statList);
+        listOfHeroes = DataProviderUnitList.getMainUnitsList();
+        adapter = new AdapterUnitExpandList(this, listOfHeroes);
         exp_list.setAdapter(adapter);
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
