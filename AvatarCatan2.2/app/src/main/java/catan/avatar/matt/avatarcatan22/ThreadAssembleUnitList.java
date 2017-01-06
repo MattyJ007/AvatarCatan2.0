@@ -84,8 +84,7 @@ public class ThreadAssembleUnitList extends Thread {
             "Avatar Kyoshi,kyo,15,3 Settlements (Air + Fire + Water) & (Ba Sing Se or Omashu),29,20,2,30,8,7,35,39,1,none"
     };
 
-    private static void setUnitsLists(
-            List<Unit> mainUnitsList) {
+    private static void setUnitsLists(List<Unit> mainUnitsList) {
         synchronized (mainUnitsList) {
             HashMap<Byte, String> bendingtypes = new HashMap<>();
 
@@ -135,5 +134,9 @@ public class ThreadAssembleUnitList extends Thread {
                 mainUnitsList.add(u);
             }
         }
+    }
+
+    public static List<Unit> getMainUnitsList() {
+        return mainUnitsList;
     }
 }

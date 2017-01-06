@@ -37,7 +37,7 @@ class ThreadBattleHandler {
                 ControllerBattleGround.getOffensiveTeamText().setText(getCurrentAttackingUnit().getName() + " heals " + unit.getName() + " for " + heal + " life");
                 ControllerBattleGround.getDefensiveTeamText().setText(getCurrentAttackingUnit().getName() + " heals " + unit.getName() + " for " + heal + " life");
                 DataProviderBattle.setIsHealing(false);
-                getCurrentAttackingUnit().setNumberOfAttacksUsed(unit.getNumberOfAttacks());
+                getCurrentAttackingUnit().setNumberOfAttacksUsed(getCurrentAttackingUnit().getNumberOfAttacks());
                 getCurrentAttackingUnit().getView().setBackgroundColor(Color.parseColor("#ffffff"));
                 getUnitsFinishedAttacking().add(getCurrentAttackingUnit());
                 setCurrentAttackingUnit(null);
@@ -47,7 +47,7 @@ class ThreadBattleHandler {
                 ControllerBattleGround.getOffensiveTeamText().setText(getCurrentAttackingUnit().getName() + " heals " + unit.getName() + " for " + heal + " life");
                 ControllerBattleGround.getDefensiveTeamText().setText(getCurrentAttackingUnit().getName() + " heals " + unit.getName() + " for " + heal + " life");
                 DataProviderBattle.setIsHealing(false);
-                getCurrentAttackingUnit().setNumberOfAttacksUsed(unit.getNumberOfAttacks());
+                getCurrentAttackingUnit().setNumberOfAttacksUsed(getCurrentAttackingUnit().getNumberOfAttacks());
                 getCurrentAttackingUnit().getView().setBackgroundColor(Color.parseColor("#ffffff"));
                 getUnitsFinishedAttacking().add(getCurrentAttackingUnit());
                 setCurrentAttackingUnit(null);

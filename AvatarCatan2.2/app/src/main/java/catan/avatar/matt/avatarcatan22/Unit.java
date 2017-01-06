@@ -145,4 +145,7 @@ public class Unit implements Cloneable{
     }
 
 
+    public void setAbility(String ability) {
+        this.ability = ability;
+    }
 }
