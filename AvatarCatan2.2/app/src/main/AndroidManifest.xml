@@ -87,6 +87,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ActivitySettlementChoice" />
         </activity>
+        <activity
+            android:name=".ActivityCalculate"
+            android:label="@string/title_activity_calculate"
+            android:parentActivityName=".ActivityMainMenu"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="catan.avatar.matt.avatarcatan22.ActivityMainMenu" />
+        </activity>
     </application>
 
 </manifest>
