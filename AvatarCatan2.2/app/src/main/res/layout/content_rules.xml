@@ -18,19 +18,152 @@
         android:layout_height="match_parent"
         android:id="@+id/textView4"
         android:layout_width="match_parent"
-        android:layout_weight="10"
+        android:layout_weight="20"
         android:gravity="center"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="35sp" />
 
-    <TextView
-        android:text="@string/rules"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/textView"
-        android:typeface="serif"
-        android:padding="20dp"
-        android:layout_weight="1" />
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:text="Aim of the Game:"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/textView"
+                android:typeface="serif"
+                android:layout_weight="1"
+                android:fontFamily="casual"
+                android:textStyle="normal|bold"
+                android:textSize="18sp"
+                android:textColor="#000" />
+
+            <TextView
+                android:text="Every player is an Element bending general trying to take over the world. To win the game a player must either vanquish all other players on the map or be the first to reach 30 victory points. Victory points(VP) are awarded as follows:\n •	1 VP per Town and 2VP per City\n •	3 VP for the longest road\n •	3 VP for the largest army\n •	1 VP per hero (max of 4 heroes) and 1VP per captured hero\n •	5VP for having controlling the Avatar (Only one avatar may be present at a time) \n •	3 VP for killing the Avatar\n •	1 VP for a University\n •	3VP per player you defeat. \n "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView5"
+                android:layout_weight="1"
+                android:fontFamily="casual"
+                android:typeface="serif" />
+
+            <TextView
+                android:text="Initial board setup:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView6"
+                android:layout_weight="1"
+                android:fontFamily="casual"
+                android:typeface="serif"
+                android:textSize="18sp"
+                android:textStyle="normal|bold"
+                android:textColor="#000" />
+
+            <TextView
+                android:text="To set up the board 12 unaffiliated settlements need to distributed in a fairly random manner. The settlements are as follows:\n •	Fire Nation Capital (City) \n •	Ember Island (Village) \n •	Ba Sing Se (City) \n •	Omashu (City) \n •	Northern Water Tribe (City) \n •	Swamp Village (Village) \n •	Southern Air Temple (City) \n •	Western Air Temple (City) \n •	Lion Turtle Town (Town) X 4\n These settlements must be placed on legal tiles. Lion Turtle towns must be placed on the edges of the board. Their affiliation is determined by their initial adjacent tiles. If the settlement is placed on two Earth tiles the alignment is earth. If the Lion turtle town is adjacent to any other tile besides earth, the town’s alignment will that tiles alignment.\n Each unaffiliated Settlement gains 2 Master benders of the settlements alignment per level of the settlement. The settlements remaining income is used to sustain apprentices. Unaffiliated air settlements all gain 2 Spirit defenders. \n To start, every player chooses an element Earth, Fire or Water (Not Air). There may be multiple players choosing the same element. To start each player places two villages. The order of players placing villages is determined by dice roll. The player with the highest roll places one village and an adjacent road. The second highest player then places their village and road and so on until the last player places their village and road. The order of placing is then reversed for second village starting with the lowest scoring player and ending with the highest scoring player.\n "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView12"
+                android:layout_weight="1"
+                android:fontFamily="casual"
+                android:typeface="serif" />
+
+            <TextView
+                android:text="Units:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView13"
+                android:layout_weight="1"
+                android:fontFamily="casual"
+                android:typeface="serif"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:textStyle="normal|bold" />
+
+            <TextView
+                android:text="Each player receives 4 apprentice benders placed to defend their villages. Apprentice units can be purchased from your respective your villages for 4 gold each. Your towns and cities can produce Master benders. Master benders cost 10 gold each. Each village or town can only produce one unit per turn, cities can produce two units per turn. \n Spirits and Lesser spirits are another type of unit present in the game. Spirits and lesser Spirits usually only play a defending role within settlements therefore they have no movement points. Spirits cannot be purchased, they only occur through Development card draws or unit abilities. The last type of units are hero units. These units have two movement points per turn. Heroes can be purchased only when a player satisfies the heroes base requirements. Great spirits such as Koh, Wan Shi Tong and Hei Bei are considered heroes and therefore have two movement points. \n Apprentice and Master benders have one movement point each. This allows units to move from one corner of a hexagon to the next adjacent corner. whilst the units are moving over roads their movement points get a X3 bonus. Units moving across roads cannot pass through enemy settlements. Newly acquired units have no movement points until players next turn. Any unit can be disbanded during a player’s turn – there is no compensation for disbanded units. \n  Each player has a limit to the size of the army they can control based on the number of command points(CP) they possess. Only Apprentice and Master Benders use up CP. Each unit requires one CP to control. CPs are gained as follows: \n •	Each player will always have a base of 2 Command points\n •	Village +1 CP\n •	Town +2 CP\n •	City +4CP\n •	Each Hero + 1CP\n If a player’s army exceeds their command point allowance the army begins to drain the income of the player. Each unit above the command point allowance uses 2 gold per turn. If a player cannot afford their army, units must be disbanded until the size of the army is affordable to the player. \n "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView14"
+                android:layout_weight="1"
+                android:fontFamily="casual"
+                android:typeface="serif" />
+
+            <TextView
+                android:text="Unit abilities:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView15"
+                android:layout_weight="1"
+                android:fontFamily="casual"
+                android:typeface="serif"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:textStyle="normal|bold" />
+
+            <TextView
+                android:text="•	Stun - 10% chance to prevent target movement and reduces defence by 25%\n •	Paralyse - 30% chance to prevent target movement\n •	Crit - 5% of doing 2.5X damage\n •	Block Chi - 60% chance of reducing targets accuracy by 20% and damage by 50%\n •	Redirect Lightning - 50% less damage from Lightning Benders\n •	Heal - may heal a unit of between 1 - 5 health or of paralysis, stun or Chi Block (Not yet Implemented) \n •	Summon Spirit - reduces summoner’s health to 1 and summons either two lesser spirits or one spirit (Not yet implemented) \n •	Take Away Bending - If target is a bender, 40% chance to reduce targets damage by 75%, avatar damage is only reduced by 25%\n "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView16"
+                android:layout_weight="1"
+                android:fontFamily="casual"
+                android:typeface="serif"
+                android:textSize="14sp" />
+
+            <TextView
+                android:text="Settlements and Roads:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView17"
+                android:layout_weight="1"
+                android:fontFamily="casual"
+                android:typeface="serif"
+                android:textSize="18sp"
+                android:textStyle="normal|bold"
+                android:textColor="#000" />
+
+            <TextView
+                android:text="Roads may only be extended one segment per turn per end. Roads have to be extended off of your settlement or off of roads attached to your settlements. Units gain the road movement bonus on any road. If two players’ roads meet, plyers may extend roads and settlements off of the road segments of the opposing players that occur before the opposing players’ settlements. The longest road achievement goes to the player with the longest stretch of unbroken road. Roads of other players do not contribute to the longest road achievement. \n New settlements begin as villages. New settlements must have a minimum of one unoccupied hexagon corner between other settlements. Settlements can only be upgraded once per turn. Therefore, it is not possible to build an instant Town or City. Lion turtle towns cannot be upgraded. Lion turtle towns are unique in that they can move across the board one vertex per players turn to any legal settlement vertex Each player has a maximum of 20 blocks to use for building new settlements and upgrade existing one. Roads are unlimited. \n Buildings cost as follows: \n •	2 Gold per road\n •	5 Gold for a new Village\n •	10 Gold to upgrade a Village to a Town\n •	15 Gold to upgrade a Town to a City. \n Settlements gain an income for the player each turn as follows:\n •	2 Gold per Village\n •	3 Gold per Town\n •	5 Gold per City\n Each player may only build buildings of their elements and the specific element alignment of a settlement determines which tiles it is legal to place the new settlement. Earth, Fire and Water settlements may all be built adjacent to Earth tiles. Fire settlements may not be built on Water or Air tiles unless that settlement is also adjacent to a fire tile. Water settlements may not be built on Fire or Air tiles unless also adjacent to a water tile. Earth settlements may not be built on Fire, Water or Air tiles unless also adjacent to an Earth tile. Air settlements must be adjacent to an air tile. \n Settlements provide an evasion bonus to each unit garrisoning it. The bonus works as follows: \n •	Village + 5% evasion\n •	Town +10% evasion\n •	City +15% evasion\n The evasion gained stacks with the unit’s evasion within battle. \n Settlements may be looted for their full tier value but each tier takes one turn to loot. Settlements can also be razed and this is instant – there is no compensation for razing a settlement. Settlements can only be looted or razed if player has units present. If a settlement is overrun by an attacker before looting is complete the looting is prevented. Units use up their movement points when razing, looting or fighting. \n Settlements conquered from opposing players of a different element must have at least one of the conquering player’s units present within the settlement to keep control of the settlement. If a player loses control of a settlement, the settlement becomes unaffiliated and gains one master bender of the settlement’s alignment per level of the settlement\n Armies may take refuge in Unaffiliated settlements, however they will not get any gold from such actions. If refugee army is attacked by another player, both the unaffiliated army and the refugee army will defend the settlement.\n "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView18"
+                android:layout_weight="1"
+                android:fontFamily="casual"
+                android:typeface="serif"
+                android:textSize="14sp" />
+
+            <TextView
+                android:text="Development Cards:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView19"
+                android:layout_weight="1"
+                android:fontFamily="casual"
+                android:typeface="serif"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:textStyle="normal|bold" />
+
+            <TextView
+                android:text="Any number of development cards may be bought per turn. Development cards containing the keyword Instant must be played immediately. Development cards with the keyword Battle may only be used during battle. The final category of development cards may be used at any time. Development cards generally help the player with the lowest Victory point score or lowest income. Score refers to VP. \n If a rule is not complied and the discrepancy is only discovered at a later point, the offending player is penalised by missing a turn, or turns and/or paying back gold, and or losing units involved in error. "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView20"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:fontFamily="casual"
+                android:typeface="serif" />
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>
