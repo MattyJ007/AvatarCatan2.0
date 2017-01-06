@@ -6,6 +6,10 @@ import java.util.Random;
 
 public class HandleUnitLongClick {
 
+    private static Unit kidnappedUnit;
+    private static int kidnappedUnitTeam;
+    private static Unit heiBai;
+
     public static void setUnit(Unit unit, int team) {
         if (unit.getStatus().contains((byte) 2)) {
             System.out.println(unit.getName() + " is Stunned");
@@ -55,6 +59,33 @@ public class HandleUnitLongClick {
                 }
                 Attack.checkTurn();
             }
+            if (unit.getAbility().equals("Kidnap")){
+                unit.setAbility("Kidnap(Used)");
+                heiBai = unit;
+                DataProviderBattle.setKidnapping(true);
+                unit.getView().setBackgroundColor(Color.parseColor("#983562"));
+                DataProviderBattle.setCurrentAttackingUnit(unit);
+            }
         }
+    }
+
+    public static Unit getKidnappedUnit() {
+        return kidnappedUnit;
+    }
+
+    public static void setKidnappedUnit(Unit kidnappedUnit1) {
+        kidnappedUnit = kidnappedUnit1;
+    }
+
+    public static Unit getHeiBai() {
+        return heiBai;
+    }
+
+    public static void setKidnappedUnitTeam(int kidnappedUnitTeam) {
+        HandleUnitLongClick.kidnappedUnitTeam = kidnappedUnitTeam;
+    }
+
+    public static int getKidnappedUnitTeam() {
+        return kidnappedUnitTeam;
     }
 }

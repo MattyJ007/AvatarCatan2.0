@@ -34,6 +34,7 @@ class ThreadBattleHandler {
             int heal = (rand.nextInt(5) + 1);
             if (team == 1 && isAttackerTurn()) {
                 unit.setLife((byte) ((unit.getLife() + heal)));
+                unit.getStatus().clear();
                 ControllerBattleGround.getOffensiveTeamText().setText(getCurrentAttackingUnit().getName() + " heals " + unit.getName() + " for " + heal + " life");
                 ControllerBattleGround.getDefensiveTeamText().setText(getCurrentAttackingUnit().getName() + " heals " + unit.getName() + " for " + heal + " life");
                 DataProviderBattle.setIsHealing(false);
@@ -44,9 +45,27 @@ class ThreadBattleHandler {
                 Attack.checkTurn();
             } else if (team == 0 && !isAttackerTurn()) {
                 unit.setLife((byte) ((unit.getLife() + heal)));
+                unit.getStatus().clear();
                 ControllerBattleGround.getOffensiveTeamText().setText(getCurrentAttackingUnit().getName() + " heals " + unit.getName() + " for " + heal + " life");
                 ControllerBattleGround.getDefensiveTeamText().setText(getCurrentAttackingUnit().getName() + " heals " + unit.getName() + " for " + heal + " life");
                 DataProviderBattle.setIsHealing(false);
+                getCurrentAttackingUnit().setNumberOfAttacksUsed(getCurrentAttackingUnit().getNumberOfAttacks());
+                getCurrentAttackingUnit().getView().setBackgroundColor(Color.parseColor("#ffffff"));
+                getUnitsFinishedAttacking().add(getCurrentAttackingUnit());
+                setCurrentAttackingUnit(null);
+                Attack.checkTurn();
+            }
+        }else if(DataProviderBattle.isKidnapping()){
+            if (!(team == 1 && isAttackerTurn()) && !(team == 0 && !isAttackerTurn())) {
+                HandleUnitLongClick.setKidnappedUnit(unit);
+                HandleUnitLongClick.setKidnappedUnitTeam(team);
+                if (isAttackerTurn()){
+                    DataProviderArmies.getArmies().getDefendingTeamUnits().remove(unit);
+                }
+                else {
+                    DataProviderArmies.getArmies().getAttackingTeamUnits().remove(unit);
+                }
+                DataProviderBattle.setKidnapping(false);
                 getCurrentAttackingUnit().setNumberOfAttacksUsed(getCurrentAttackingUnit().getNumberOfAttacks());
                 getCurrentAttackingUnit().getView().setBackgroundColor(Color.parseColor("#ffffff"));
                 getUnitsFinishedAttacking().add(getCurrentAttackingUnit());

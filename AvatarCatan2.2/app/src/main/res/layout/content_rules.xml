@@ -111,7 +111,7 @@
                 android:textStyle="normal|bold" />
 
             <TextView
-                android:text="•	Stun - 10% chance to prevent target movement and reduces defence by 25%\n •	Paralyse - 30% chance to prevent target movement\n •	Crit - 5% of doing 2.5X damage\n •	Block Chi - 60% chance of reducing targets accuracy by 20% and damage by 50%\n •	Redirect Lightning - 50% less damage from Lightning Benders\n •	Heal - may heal a unit of between 1 - 5 health or of paralysis, stun or Chi Block\n •	Summon Spirit - reduces summoner’s health to 1 and summons either two lesser spirits or one spirit (Not yet implemented) \n •	Take Away Bending - If target is a bender, 40% chance to reduce targets damage by 75%, avatar damage is only reduced by 25%\n "
+                android:text="•	Stun - 10% chance to prevent target movement and reduces defence by 25%\n •	Paralyse - 30% chance to prevent target movement\n •	Crit - 5% of doing 2.5X damage\n •	Block Chi - 60% chance of reducing targets accuracy by 20% and damage by 50%\n •	Redirect Lightning - 50% less damage from Lightning Benders\n •	Heal - may heal a unit of between 1 - 5 health or of paralysis, stun or Chi Block (Not yet Implemented) \n •	Summon Spirit - summons either between one and three lesser spirits or one spirit\n •	Take Away Bending - If target is a bender, 40% chance to reduce targets damage by 75%, avatar damage is only reduced by 25%\n •	Kidnap - Removes One Unit at the beginning of a battle - unit is returned if Hei Bai is defeated\n "
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView16"

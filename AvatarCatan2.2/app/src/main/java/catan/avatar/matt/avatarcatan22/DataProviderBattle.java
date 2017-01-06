@@ -5,6 +5,7 @@ import java.util.ArrayList;
 class DataProviderBattle {
     private static boolean attackerTurn;
     private static boolean isHealing;
+    private static boolean kidnapping;
     private static Unit currentAttackingUnit;
     private static ArrayList<Unit> currentDefendingUnits;
     private static ArrayList<Unit> unitsFinishedAttacking;
@@ -82,5 +83,13 @@ class DataProviderBattle {
 
     public static void setIsHealing(boolean isHealing) {
         DataProviderBattle.isHealing = isHealing;
+    }
+
+    public static void setKidnapping(boolean kidnapping) {
+        DataProviderBattle.kidnapping = kidnapping;
+    }
+
+    public static boolean isKidnapping() {
+        return kidnapping;
     }
 }

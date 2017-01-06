@@ -157,6 +157,13 @@ class Attack {
                 ControllerBattleGround.getDefensiveTeamText().append(attacker.getName() + " hits " + defender.getName() + " for " + actualDamage + "\n");
                 implementAbility(attacker, defender);
                 if (defender.getLife() < 1) {
+                    if (defender == HandleUnitLongClick.getHeiBai()){
+                       if (HandleUnitLongClick.getKidnappedUnitTeam() == 0){
+                           DataProviderArmies.getArmies().getDefendingTeamUnits().add(HandleUnitLongClick.getKidnappedUnit());
+                       }else {
+                           DataProviderArmies.getArmies().getAttackingTeamUnits().add(HandleUnitLongClick.getKidnappedUnit());
+                       }
+                    }
                     defender.getStatus().clear();
                     defender.getStatus().add((byte) 0);
                     if (!retaliation) {
