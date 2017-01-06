@@ -133,119 +133,127 @@ class ThreadBattleHandler {
     }
 
     private static void applyDamage(Unit defender, float damage, boolean retaliation, Unit attacker) {
-        Random rand = new Random();
-        int settlementEvasionBonus = 0;
+        if (attacker.getStatus().contains((byte) 2)){
+            ControllerBattleGround.getDefensiveTeamText().append(attacker.getName() + " is Stunned");
+            ControllerBattleGround.getOffensiveTeamText().append(attacker.getName() + " is Stunned");
+        }else if(attacker.getStatus().contains((byte) 3)){
+            ControllerBattleGround.getDefensiveTeamText().append(attacker.getName() + " is Paralysed");
+            ControllerBattleGround.getOffensiveTeamText().append(attacker.getName() + " is Paralysed");
+        }else {
+            Random rand = new Random();
+            int settlementEvasionBonus = 0;
 
-        //** Needs adjustment for retaliation
-        if (team == 0 && !retaliation) {
-            settlementEvasionBonus = DataProviderSettlementDefence.getSettlementEvasionBonus();
-        }
-        if (team == 1 && retaliation) {
-            settlementEvasionBonus = DataProviderSettlementDefence.getSettlementEvasionBonus();
-        }
-        float accuracy = attacker.getAccuracy();
-        float defEvasion = defender.getEvasion();
-        for (byte status : attacker.getStatus()) {
-            if (status == (byte) 5) {
-                accuracy *= 0.8;
+            //** Needs adjustment for retaliation
+            if (team == 0 && !retaliation) {
+                settlementEvasionBonus = DataProviderSettlementDefence.getSettlementEvasionBonus();
             }
-        }
-        for (byte status : defender.getStatus()) {
-            if (status == (byte) 2 || status == (byte) 3) {
-                defEvasion = 1;
+            if (team == 1 && retaliation) {
+                settlementEvasionBonus = DataProviderSettlementDefence.getSettlementEvasionBonus();
             }
-        }
-        int evasion = (int) ((1.0 - (accuracy / (accuracy + defEvasion))) * 100);
-//        System.out.println(defender.getName() + " Evasion: " + evasion);
-        if (evasion > 60) {
-            evasion = 60;
-        }
-        evasion += settlementEvasionBonus;
-        int probabilityOfHit = (rand.nextInt(100) + 1);
-//        System.out.println("Evasion + settlement bonus: " + evasion + "\nProbability of hit: " + probabilityOfHit);
-        if (probabilityOfHit < (evasion)) {
-            ControllerBattleGround.getDefensiveTeamText().append(defender.getName() + " evades " + attacker.getName() + "\n");
-            ControllerBattleGround.getOffensiveTeamText().append(defender.getName() + " evades " + attacker.getName() + "\n");
-            if (!retaliation) {
-                ArrayList<Unit> attackingUnit = new ArrayList<>();
-                attackingUnit.add(getCurrentAttackingUnit());
-                attack(defender, attackingUnit, true);
-
-            }
-        } else {
-            byte actualDamage;
-            float defense = defender.getDefense();
+            float accuracy = attacker.getAccuracy();
+            float defEvasion = defender.getEvasion();
             for (byte status : attacker.getStatus()) {
-                if (status == (byte) 4) {
-                    damage *= 0.25;
-                }
                 if (status == (byte) 5) {
-                    damage *= 0.5;
+                    accuracy *= 0.8;
                 }
             }
-            if (defender.getStatus().contains((byte) 2)) {
-                defense -= 25;
-            }
-            actualDamage = (byte) Math.round(((float) (1 - (defense / 100.0)) * damage));
-            if (attacker.getAbility().equals("Critical Hit")) {
-                if (rand.nextInt(20) + 1 == 20) {
-                    String critHit = "Critical hit by " + attacker.getName();
-                    ControllerBattleGround.getDefInfoText().setText(critHit);
-                    ControllerBattleGround.getAttInfoText().setText(critHit);
-                    actualDamage *= 2.5;
+            for (byte status : defender.getStatus()) {
+                if (status == (byte) 2 || status == (byte) 3) {
+                    defEvasion = 1;
                 }
-            } else if (defender.getAbility().equals("Redirect Lightning") && attacker.getType() == (byte) 2) {
-                String redirectLightning = defender.getName() + " redirects Lightning";
-                ControllerBattleGround.getDefInfoText().setText(redirectLightning);
-                ControllerBattleGround.getAttInfoText().setText(redirectLightning);
-
-                actualDamage /= 2;
             }
-            if (actualDamage == 0) {
-                actualDamage = (byte) 1;
+            int evasion = (int) ((1.0 - (accuracy / (accuracy + defEvasion))) * 100);
+//        System.out.println(defender.getName() + " Evasion: " + evasion);
+            if (evasion > 60) {
+                evasion = 60;
             }
-            defender.setLife((byte) (defender.getLife() - actualDamage));
-            ControllerBattleGround.getOffensiveTeamText().append(attacker.getName() + " hits " + defender.getName() + " for " + actualDamage + "\n");
-            ControllerBattleGround.getDefensiveTeamText().append(attacker.getName() + " hits " + defender.getName() + " for " + actualDamage + "\n");
-            implementAbility(attacker, defender);
-            if (defender.getLife() < 1) {
-                defender.getStatus().clear();
-                defender.getStatus().add((byte) 0);
-                if (!retaliation) {
-                    if (isAttackerTurn()) {
-                        if (!getDeadDefendingUnits().contains(defender)) {
-                            getDeadDefendingUnits().add(defender);
-//                            System.out.println(defender.getName() + " defender dead.");
-
-                        }
-                    } else {
-                        if (!getDeadAttackingUnits().contains(defender)) {
-                            getDeadAttackingUnits().add(defender);
-//                            System.out.println(defender.getName() + " attacker dead.");
-
-                        }
-                    }
-                } else {
-                    if (!isAttackerTurn()) {
-                        if (!getDeadDefendingUnits().contains(defender)) {
-                            getDeadDefendingUnits().add(defender);
-//                            System.out.println(defender.getName() + " defender dead.");
-
-                        }
-                    } else {
-                        if (!getDeadAttackingUnits().contains(defender)) {
-                            getDeadAttackingUnits().add(defender);
-//                            System.out.println(defender.getName() + " attacker dead.");
-
-                        }
-                    }
-                    getUnitsFinishedAttacking().remove(defender);
-                }
-            } else {
+            evasion += settlementEvasionBonus;
+            int probabilityOfHit = (rand.nextInt(100) + 1);
+//        System.out.println("Evasion + settlement bonus: " + evasion + "\nProbability of hit: " + probabilityOfHit);
+            if (probabilityOfHit < (evasion)) {
+                ControllerBattleGround.getDefensiveTeamText().append(defender.getName() + " evades " + attacker.getName() + "\n");
+                ControllerBattleGround.getOffensiveTeamText().append(defender.getName() + " evades " + attacker.getName() + "\n");
                 if (!retaliation) {
                     ArrayList<Unit> attackingUnit = new ArrayList<>();
                     attackingUnit.add(getCurrentAttackingUnit());
                     attack(defender, attackingUnit, true);
+
+                }
+            } else {
+                byte actualDamage;
+                float defense = defender.getDefense();
+                for (byte status : attacker.getStatus()) {
+                    if (status == (byte) 4) {
+                        damage *= 0.25;
+                    }
+                    if (status == (byte) 5) {
+                        damage *= 0.5;
+                    }
+                }
+                if (defender.getStatus().contains((byte) 2)) {
+                    defense -= 25;
+                }
+                actualDamage = (byte) Math.round(((float) (1 - (defense / 100.0)) * damage));
+                if (attacker.getAbility().equals("Critical Hit")) {
+                    if (rand.nextInt(20) + 1 == 20) {
+                        String critHit = "Critical hit by " + attacker.getName();
+                        ControllerBattleGround.getDefInfoText().setText(critHit);
+                        ControllerBattleGround.getAttInfoText().setText(critHit);
+                        actualDamage *= 2.5;
+                    }
+                } else if (defender.getAbility().equals("Redirect Lightning") && attacker.getType() == (byte) 2) {
+                    String redirectLightning = defender.getName() + " redirects Lightning";
+                    ControllerBattleGround.getDefInfoText().setText(redirectLightning);
+                    ControllerBattleGround.getAttInfoText().setText(redirectLightning);
+
+                    actualDamage /= 2;
+                }
+                if (actualDamage == 0) {
+                    actualDamage = (byte) 1;
+                }
+                defender.setLife((byte) (defender.getLife() - actualDamage));
+                ControllerBattleGround.getOffensiveTeamText().append(attacker.getName() + " hits " + defender.getName() + " for " + actualDamage + "\n");
+                ControllerBattleGround.getDefensiveTeamText().append(attacker.getName() + " hits " + defender.getName() + " for " + actualDamage + "\n");
+                implementAbility(attacker, defender);
+                if (defender.getLife() < 1) {
+                    defender.getStatus().clear();
+                    defender.getStatus().add((byte) 0);
+                    if (!retaliation) {
+                        if (isAttackerTurn()) {
+                            if (!getDeadDefendingUnits().contains(defender)) {
+                                getDeadDefendingUnits().add(defender);
+//                            System.out.println(defender.getName() + " defender dead.");
+
+                            }
+                        } else {
+                            if (!getDeadAttackingUnits().contains(defender)) {
+                                getDeadAttackingUnits().add(defender);
+//                            System.out.println(defender.getName() + " attacker dead.");
+
+                            }
+                        }
+                    } else {
+                        if (!isAttackerTurn()) {
+                            if (!getDeadDefendingUnits().contains(defender)) {
+                                getDeadDefendingUnits().add(defender);
+//                            System.out.println(defender.getName() + " defender dead.");
+
+                            }
+                        } else {
+                            if (!getDeadAttackingUnits().contains(defender)) {
+                                getDeadAttackingUnits().add(defender);
+//                            System.out.println(defender.getName() + " attacker dead.");
+
+                            }
+                        }
+                        getUnitsFinishedAttacking().remove(defender);
+                    }
+                } else {
+                    if (!retaliation) {
+                        ArrayList<Unit> attackingUnit = new ArrayList<>();
+                        attackingUnit.add(getCurrentAttackingUnit());
+                        attack(defender, attackingUnit, true);
+                    }
                 }
             }
         }
@@ -292,7 +300,7 @@ class ThreadBattleHandler {
                 break;
             case "Block Chi":
                 if (defender.getType() != 14) {
-                    if (statusChange >= 70) {
+                    if (statusChange >= 40) {
                         defender.getStatus().add((byte) 5);
                         String chiBlock = defender.getName() + "'s Chi is blocked";
                         if (ControllerBattleGround.getDefInfoText().getText().equals(defender.getName() + " is Stunned\n")) {
