@@ -15,6 +15,53 @@ import static catan.avatar.matt.avatarcatan22.DataProviderBattle.setAttackerTurn
 import static catan.avatar.matt.avatarcatan22.DataProviderBattle.setCurrentAttackingUnit;
 
 class Attack {
+    static void attack(Unit attacking, ArrayList<Unit> defending, boolean retaliation, int team1) {
+        team = team1;
+        float damagePerUnit = rollDieForAttack(attacking);
+        for (Unit defender : defending) {
+            if (retaliation) {
+                float retaliateDamage = rollDieForAttack(defender);
+                damagePerUnit = retaliateDamage * defender.getNumberOfAttacks();
+                applyDamage(getCurrentAttackingUnit(), retaliateDamage, retaliation, attacking);
+            } else {
+                applyDamage(defender, damagePerUnit, retaliation, attacking);
+            }
+        }
+
+        if (!retaliation) {
+            attacking.getView().setBackgroundColor(Color.parseColor("#ffffff"));
+            for (Unit defendingUnit : defending) {
+                defendingUnit.getView().setBackgroundColor(Color.parseColor("#ffffff"));
+            }
+            Attack.checkTurn();
+            defending.clear();
+//            getCurrentAttackingUnit().setNumberOfAttacksUsed((byte) 0);
+            setCurrentAttackingUnit(null);
+        }
+    }
+
+    static void checkTurn() {
+        if (isAttackerTurn()) {
+            if ((getUnitsFinishedAttacking().size() + getDeadAttackingUnits().size()) == DataProviderArmies.getArmies().getAttackingTeamUnits().size()) {
+                setAttackerTurn(false);
+                resetUnitsAttacks();
+                ControllerBattleGround.getAttInfoText().clearComposingText();
+                ControllerBattleGround.getDefInfoText().clearComposingText();
+                ControllerBattleGround.getCenterText().setRotation(0);
+                getUnitsFinishedAttacking().clear();
+            }
+        } else {
+            if ((getUnitsFinishedAttacking().size() + getDeadDefendingUnits().size()) == DataProviderArmies.getArmies().getDefendingTeamUnits().size()) {
+                setAttackerTurn(true);
+                resetUnitsAttacks();
+                ControllerBattleGround.getAttInfoText().clearComposingText();
+                ControllerBattleGround.getDefInfoText().clearComposingText();
+                ControllerBattleGround.getCenterText().setRotation(180);
+                getUnitsFinishedAttacking().clear();
+            }
+        }
+    }
+
     private static int team = 0;
     private static float rollDieForAttack(Unit currentAttackingUnit) {
         Random rand = new Random();
@@ -212,50 +259,6 @@ class Attack {
         }
 
 
-    }
-
-    static void attack(Unit attacking, ArrayList<Unit> defending, boolean retaliation, int team1) {
-        team = team1;
-        float damagePerUnit = rollDieForAttack(attacking);
-        for (Unit defender : defending) {
-            if (retaliation) {
-                float retaliateDamage = rollDieForAttack(defender);
-                damagePerUnit = retaliateDamage * defender.getNumberOfAttacks();
-                applyDamage(getCurrentAttackingUnit(), retaliateDamage, retaliation, attacking);
-            } else {
-                applyDamage(defender, damagePerUnit, retaliation, attacking);
-            }
-        }
-
-        if (!retaliation) {
-            attacking.getView().setBackgroundColor(Color.parseColor("#ffffff"));
-            for (Unit defendingUnit : defending) {
-                defendingUnit.getView().setBackgroundColor(Color.parseColor("#ffffff"));
-            }
-            if (isAttackerTurn()) {
-                if ((getUnitsFinishedAttacking().size() + getDeadAttackingUnits().size()) == DataProviderArmies.getArmies().getAttackingTeamUnits().size()) {
-                    setAttackerTurn(false);
-                    resetUnitsAttacks();
-                    ControllerBattleGround.getAttInfoText().clearComposingText();
-                    ControllerBattleGround.getDefInfoText().clearComposingText();
-                    ControllerBattleGround.getCenterText().setRotation(0);
-                    getUnitsFinishedAttacking().clear();
-
-                }
-            } else {
-                if ((getUnitsFinishedAttacking().size() + getDeadDefendingUnits().size()) == DataProviderArmies.getArmies().getDefendingTeamUnits().size()) {
-                    setAttackerTurn(true);
-                    resetUnitsAttacks();
-                    ControllerBattleGround.getAttInfoText().clearComposingText();
-                    ControllerBattleGround.getDefInfoText().clearComposingText();
-                    ControllerBattleGround.getCenterText().setRotation(180);
-                    getUnitsFinishedAttacking().clear();
-                }
-            }
-            defending.clear();
-//            getCurrentAttackingUnit().setNumberOfAttacksUsed((byte) 0);
-            setCurrentAttackingUnit(null);
-        }
     }
 
     private static void resetUnitsAttacks() {

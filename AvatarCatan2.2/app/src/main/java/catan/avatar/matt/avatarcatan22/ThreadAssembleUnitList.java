@@ -44,7 +44,7 @@ public class ThreadAssembleUnitList extends Thread {
             "Suki,suk,0,Village,14,13,1,10,8,10,20,13,1,none",
             "Mako,mak,2,City,13,14,1,5,8,6,22,13,1,none",
             "June,jun,0,Village,13,13,1,15,8,7,23,13,1,Paralyse",
-            "Hama,ham,6,2 Villages (Fire + Water) & Not fire nation,10,16,3,25,8,9,10,13,1,Control",
+            "Hama,ham,6,2 Villages (Fire + Water) & Not fire nation,10,16,3,25,8,9,10,13,1,Heal",
             "Mai,mai,12,City,12,16,1,5,9,7,20,13,1,Crit",
             "Sword Master Piandao,pia,0,Town (Fire),12,15,2,0,9,9,20,14,1,Crit",
             "Spirit,spi,14,Spirit Defender Card,13,12,2,20,9,8,23,0,0,none",

@@ -3,6 +3,7 @@ package catan.avatar.matt.avatarcatan22;
 import android.graphics.Color;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import static catan.avatar.matt.avatarcatan22.DataProviderBattle.getCurrentAttackingUnit;
 import static catan.avatar.matt.avatarcatan22.DataProviderBattle.getCurrentDefendingUnits;
@@ -28,6 +29,30 @@ class ThreadBattleHandler {
             String dead = unit.getName() + " is Dead";
             ControllerBattleGround.getOffensiveTeamText().setText(dead);
             ControllerBattleGround.getDefensiveTeamText().setText(dead);
+        } else if (DataProviderBattle.isHealing()) {
+            Random rand = new Random();
+            int heal = (rand.nextInt(5) + 1);
+            if (team == 1 && isAttackerTurn()) {
+                unit.setLife((byte) ((unit.getLife() + heal)));
+                ControllerBattleGround.getOffensiveTeamText().setText(getCurrentAttackingUnit().getName() + " heals " + unit.getName() + " for " + heal + " life");
+                ControllerBattleGround.getDefensiveTeamText().setText(getCurrentAttackingUnit().getName() + " heals " + unit.getName() + " for " + heal + " life");
+                DataProviderBattle.setIsHealing(false);
+                getCurrentAttackingUnit().setNumberOfAttacksUsed(unit.getNumberOfAttacks());
+                getCurrentAttackingUnit().getView().setBackgroundColor(Color.parseColor("#ffffff"));
+                getUnitsFinishedAttacking().add(getCurrentAttackingUnit());
+                setCurrentAttackingUnit(null);
+                Attack.checkTurn();
+            } else if (team == 0 && !isAttackerTurn()) {
+                unit.setLife((byte) ((unit.getLife() + heal)));
+                ControllerBattleGround.getOffensiveTeamText().setText(getCurrentAttackingUnit().getName() + " heals " + unit.getName() + " for " + heal + " life");
+                ControllerBattleGround.getDefensiveTeamText().setText(getCurrentAttackingUnit().getName() + " heals " + unit.getName() + " for " + heal + " life");
+                DataProviderBattle.setIsHealing(false);
+                getCurrentAttackingUnit().setNumberOfAttacksUsed(unit.getNumberOfAttacks());
+                getCurrentAttackingUnit().getView().setBackgroundColor(Color.parseColor("#ffffff"));
+                getUnitsFinishedAttacking().add(getCurrentAttackingUnit());
+                setCurrentAttackingUnit(null);
+                Attack.checkTurn();
+            }
         } else if (getCurrentAttackingUnit() == null) {
             String isAtt = unit.getName() + " is attacking";
             String alreadyAttd = unit.getName() + " has already attacked";

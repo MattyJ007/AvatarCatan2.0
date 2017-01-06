@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 class DataProviderBattle {
     private static boolean attackerTurn;
+    private static boolean isHealing;
     private static Unit currentAttackingUnit;
     private static ArrayList<Unit> currentDefendingUnits;
     private static ArrayList<Unit> unitsFinishedAttacking;
@@ -12,6 +13,21 @@ class DataProviderBattle {
 
     static void setUnit(Unit unit, int team) {
         ThreadBattleHandler.battleHandlerThread(unit, team);
+    }
+
+    static void setLongClickUnit(Unit unit, int team){
+        if (!unitsFinishedAttacking.contains(unit)){
+            if (team == 1 && isAttackerTurn()){
+                if(!deadAttackingUnits.contains(unit)){
+                    HandleUnitLongClick.setUnit(unit, team);
+                }
+            }
+            else if (team == 0 && !isAttackerTurn()){
+                if (!deadDefendingUnits.contains(unit)){
+                    HandleUnitLongClick.setUnit(unit, team);
+                }
+            }
+        }
     }
 
     static boolean isAttackerTurn() {
@@ -60,4 +76,11 @@ class DataProviderBattle {
         return deadDefendingUnits;
     }
 
+    public static boolean isHealing() {
+        return isHealing;
+    }
+
+    public static void setIsHealing(boolean isHealing) {
+        DataProviderBattle.isHealing = isHealing;
+    }
 }

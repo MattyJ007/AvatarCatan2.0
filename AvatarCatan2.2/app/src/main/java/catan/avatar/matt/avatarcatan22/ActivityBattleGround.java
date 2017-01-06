@@ -1,5 +1,6 @@
 package catan.avatar.matt.avatarcatan22;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -45,6 +46,17 @@ public class ActivityBattleGround extends AppCompatActivity {
 
         DataProviderBattle.setBattleHandlerVariables();
 
+        offensiveTeamGrid.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Unit unit = DataProviderArmies.getArmies().getAttackingTeamUnits().get(position);
+                DataProviderBattle.setLongClickUnit(unit, 1);
+                attackGridAdapter.notifyDataSetChanged();
+                defenseGridAdapter.notifyDataSetChanged();
+                return true;
+            }
+        });
+
         offensiveTeamGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -54,6 +66,18 @@ public class ActivityBattleGround extends AppCompatActivity {
                 defenseGridAdapter.notifyDataSetChanged();
             }
         });
+
+        defensiveTeamGrid.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Unit unit = DataProviderArmies.getArmies().getDefendingTeamUnits().get(position);
+                DataProviderBattle.setLongClickUnit(unit, 0);
+                attackGridAdapter.notifyDataSetChanged();
+                defenseGridAdapter.notifyDataSetChanged();
+                return true;
+            }
+        });
+
         defensiveTeamGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
